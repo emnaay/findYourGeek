@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import '../styles/welcome.css';
+import '../styles/carousel.css';
 import fields from "./Fields";
 
 const FieldCarousel = () => {
@@ -20,6 +20,7 @@ const FieldCarousel = () => {
 
 
       return (
+        
         <div className="carousel-container">
             <Slider {...settings}>
                 {fields.map((field, index) => (
