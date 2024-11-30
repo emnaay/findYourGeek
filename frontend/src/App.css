@@ -1,0 +1,20 @@
+@import url('https://path-to-your-font-or-google-font-url');
+
+* {
+  font-family: "Open Sauce One", sans-serif;
+}
+
+a.question-button.nav-link {
+  background-color: white;
+  border-radius: 25px;
+}
+
+/* Hover effect */
+a.question-button:hover {
+  background-color: #202258; /* Background color on hover */
+  color: #ffffff; /* Text color on hover */
+}
+
+
+
+/* gome page css */
