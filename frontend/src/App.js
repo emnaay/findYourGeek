@@ -1,10 +1,11 @@
-import React, { useState , useEffect } from 'react';
-import ProfilePage from './pages/profilePage';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SignUpLoginPage from './pages/signUpLoginPage';
+import React, { useEffect, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/profilePage';
+import ProjectCard from './pages/projectPage';
 import Welcome from './pages/Welcome';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProjectCard from './pages/projectPage'
+import SignupPage from './pages/SignupPage';
 
 
 
@@ -34,10 +35,12 @@ function App() {
       <Router>  
         <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/signup" element={<SignUpLoginPage />} />
+            <Route path="/signUp" element={<SignupPage />} />
+            {/* <Route path="/signup" element={<SignUpLoginPage />} /> */}
             {/* <Route path="/ProjectCard" element={<ProjectCard />} /> */}
             {/* <Route path="/profile/" element={<ProfilePage />} /> */}
             <Route path="/welcome" element={<Welcome/>} />
+            <Route path="/signIn" element={<LoginPage />} />
 
 
             { //profile
