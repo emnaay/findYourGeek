@@ -50,9 +50,9 @@ const ProjectCard = ({Id}) => {
            <div class="cards">
            <div class="card">
            <div class="card-profile-icon">👤</div>
-           <div class="card-name">{d.userID}</div>
+           <div class="card-name">{d.userName}</div>
            <div class="card-description">{d.projectName}</div>
-           {/* <div class="">{d.skills_needed}</div> */}
+           <div class="">{d.skills_needed}</div> 
            <a href="#" class="card-price-button">{d.price} DT</a>
          </div>
          
