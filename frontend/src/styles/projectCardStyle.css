@@ -1,3 +1,5 @@
+/* yassmine fas5ethaa
+
 body {
     display: flex;
     justify-content: center;
@@ -32,17 +34,17 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin-top: 10px;
-  }
+  } */
   
   /* Description */
-  .card-description {
+  /* .card-description {
     font-size: 16px;
     color: #333;
     margin: 10px 0 20px;
-  }
+  } */
   
   /* Price Button */
-  .card-price-button {
+  /* .card-price-button {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 25px;
@@ -50,4 +52,4 @@ body {
     color: #1a2941;
     font-weight: bold;
     text-decoration: none;
-  }
+  } */

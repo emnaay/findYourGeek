@@ -1,4 +1,4 @@
-import NavigationBar from "../component/NavigationBar";
+import NavigationBar from "../component/NavigationBarY";
 import ProfileCard from "../component/profileCard";
 import ProfileProject from "../component/profileProject";
 

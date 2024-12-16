@@ -1,6 +1,7 @@
 import React from "react";
-import '../styles/projectCardStyle.css'
-import NavigationBar from "../component/NavigationBar";
+// import '../styles/projectCardStyle.css'
+import "../styles/Card.css"
+import NavigationBar from "../component/NavigationBarY";
 import { useState, useEffect } from "react";
 
 
