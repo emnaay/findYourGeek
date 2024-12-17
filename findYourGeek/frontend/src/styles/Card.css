@@ -1,0 +1,101 @@
+/* card.css */
+
+
+/* Card Container */
+.mdb-card {
+    border: 15px solid #93bfb7;
+    border-radius: 25px;
+    height: 100%;
+  }
+  
+  /* Card Body */
+  .mdb-card-body {
+    height: 300px;
+  }
+  
+  /* Avatar */
+  .mdb-card-image {
+    border-radius: 50%; /* Ensures the image is circular */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a slight shadow */
+    margin-right: 1rem; /* Space between the avatar and text */
+    width: 40px;
+    height: 40px;
+  }
+  
+  /* Text Container */
+  .card-header {
+    font-weight: bold;
+    color: black;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-subtext {
+    color: #6c757d; /* Text-muted color */
+    font-size: 0.875rem;
+    margin-bottom: 0;
+  }
+  
+  /* Description */
+  .card-description {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Price Link */
+  .float-end {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+  
+  .question-button {
+    padding: 10px;
+    color: black;
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .question-button:hover {
+    text-decoration: underline; /* Add underline on hover */
+  }
+  
+  .carousel-vertical .carousel-inner {
+    height: 300px; /* Set the height for the carousel */
+  }
+  
+  .carousel-vertical .carousel-item {
+    height: 100%; /* Each item takes the full height of the carousel */
+  }
+  
+  .carousel-vertical .carousel-item-next,
+  .carousel-vertical .carousel-item-prev,
+  .carousel-vertical .carousel-item.active {
+    transition: transform 0.6s ease;
+  }
+  
+  .carousel-control-prev,
+.carousel-control-next{
+    display: flex;
+    align-items: center; /* Vertically centers the arrows */
+    justify-content: center;
+    position: absolute;
+    top: 50%; /* Centers the arrow vertically */
+    transform: translateY(-50%); /* Adjusts for exact centering */
+    width: 40px; /* Width of the arrow button */
+    height: 40px; /* Height of the arrow button */
+    background-color: none; /* Transparent background */
+    border: none; /* Removes any border */
+    z-index: 1; /* Optional: size of the icon */
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: transparent !important; /* Ensures no green background on hover */
+  outline: none; /* Removes any focus outline */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #202258; /* Ensures background is transparent */
+  border-radius: 50%; /* Optional: gives it a round appearance */
+  width: 30px; /* Optional: size of the icon */
+  height: 30px; /* Optional: size of the icon */
+}

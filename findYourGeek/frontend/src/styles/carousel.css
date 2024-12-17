@@ -1,0 +1,29 @@
+.carousel-container {
+    width: 100vw; /* 100% of the viewport width */
+    max-width: none; /* Set a maximum width for better layout */
+    /* margin: auto;  */
+    background-color: #93bfb7;
+    padding: 20px;
+
+}
+
+.slick-slide {
+    text-align: center;
+    color: #000; /* Change text color for better contrast */
+    background: #93bfb7;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px; /* Set height for each slide */
+}
+
+.slick-slide h3 {
+    font-size: 1.5rem;
+    color: #fff; /* Contrast the text color */
+}
+
+.slick-prev, .slick-next {
+    color: #000 !important; /* Ensure arrows are visible */
+    z-index: 1; /* Bring arrows to the front */
+}
