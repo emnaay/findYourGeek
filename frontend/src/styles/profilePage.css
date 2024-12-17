@@ -1,0 +1,59 @@
+.profilepagecontainer {
+  display: flex;
+  margin-top: 6%;
+}
+
+.profilecardcontainer {
+  flex: 0 0 auto;
+}
+
+.profiledetails {
+  flex: 1;
+}
+
+.portfolio_header {
+  color: #387373;
+  margin-top: -30px;
+}
+
+.portfoliocard_img {
+  height: 150px;
+  width: 100%;
+}
+
+.prevwork_cont {
+  display: flex;
+}
+
+.viewproj_button {
+  border-radius: 12px;
+  background-color: #387373;
+}
+
+.profile_nav_field{
+    height:100%;
+}
+
+.proposed_project_body{
+    display: flex;
+     justify-content: space-between; 
+}
+
+.proposed_project_link{
+    color: #387373;
+     margin: 0 10px;
+}
+.proposed_project_card{
+    width: 100%;
+}
+.proposed_project_card_header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.proposed_project_button{
+    background: none;
+    border: none;
+    color: black;
+    width: 10%;
+}

@@ -12,15 +12,14 @@ export default function CardCarousel() {
   return (
     <MDBContainer
       className="py-5"
-      style={{ maxWidth: "500px", height: "500px" }}
-    >
+          >
       <div
         id="carouselExample"
-        className="carousel slide carousel-vertical"
+        className="carousel-vertical-slider"
         data-bs-ride="carousel"
-        style={{ height: "100%" }}
+        
       >
-        <div className="carousel-inner" style={{ height: "100%" }}>
+        <div className="carousel-inner">
           {cardData.map((card, index) => (
             <div
               className={`carousel-item ${index === 0 ? "active" : ""}`}

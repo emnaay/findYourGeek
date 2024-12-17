@@ -1,0 +1,70 @@
+@import url('https://path-to-your-font-or-google-font-url');
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+* {
+  font-family: "Open Sauce One", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a.question-button.nav-link {
+  background-color: white;
+  border-radius: 25px;
+}
+
+a.question-button {
+  background-color: white;
+  border-radius: 25px;
+  border: 3px solid #202258;
+  text-decoration: none;
+}
+
+a.question-button:hover {
+  background-color: #202258;
+  color: #ffffff; 
+}
+
+.background-image {
+  background-size: cover;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+/* .background-image {
+  background-image: url('../img/homepage.png');
+  background-size: cover; 
+  background-position: center; 
+  width: 100vw; 
+  height: 100vh; 
+  position: relative;
+} */
+
+.overlay-text {
+  position:absolute;
+  top: 40%; 
+  left: 20%;
+  transform: translate(-50%, -50%); 
+  color: #202258;
+  
+  
+  text-align: center; 
+  font-weight: 1000;
+  font-family: "Alfa Slab One", serif;
+  font-size: 60px;
+  font-style: normal;
+}
+
+.welcomepagetitle{
+  color: #202258;
+  font-weight: 1000;
+  font-family: "Alfa Slab One", serif;
+  font-size: 60px;
+  font-style: normal;
+}
+
+

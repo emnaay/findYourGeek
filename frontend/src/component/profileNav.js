@@ -7,6 +7,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import Portfolio from './portfolio';
 import ProjectProposed from './projectProposed';
 import Chat from './chat';
+import "../styles/profilePage.css";
+
 
 // Define your color palette
 const colors = {
@@ -61,9 +63,9 @@ function ProfileNav({userID}) {
                         }} />
                     </TabList>
                 </Box>
-                <TabPanel value="1" style={{height:'100%'}}> <Portfolio userID ={userID} /> </TabPanel>
-                <TabPanel value="2" style={{height:'100%'}}> <ProjectProposed userID ={userID} /> </TabPanel>
-                <TabPanel value="3" style={{height:'100%'}}> <Chat /> </TabPanel>
+                <TabPanel value="1" className='profile_nav_field' > <Portfolio userID ={userID} /> </TabPanel>
+                <TabPanel value="2" className='profile_nav_field' > <ProjectProposed userID ={userID} /> </TabPanel>
+                <TabPanel value="3" className='profile_nav_field' > <Chat /> </TabPanel>
             </TabContext>
         </Box>
     );

@@ -1,4 +1,4 @@
-/* card.css */
+/* Card.css */
 
 
 /* Card Container */
@@ -98,4 +98,17 @@
   border-radius: 50%; /* Optional: gives it a round appearance */
   width: 30px; /* Optional: size of the icon */
   height: 30px; /* Optional: size of the icon */
+}
+
+.py-5{
+  max-width: 500px;
+   height: 500px;
+}
+
+.carousel-vertical-slider{
+  height: "100%";
+}
+
+.carousel-inner{
+  height: "100%";
 }

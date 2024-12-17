@@ -1,24 +1,27 @@
 import NavigationBar from "../component/NavigationBarY";
 import ProfileCard from "../component/profileCard";
 import ProfileProject from "../component/profileProject";
+import "../styles/profilePage.css";
 
-function ProfilePage({Id}){
-
+function ProfilePage({ Id }) {
   console.log(Id);
-  return(
+  return (
     <div>
-      <NavigationBar/>
-    <div style={{ display: "flex" , marginTop:"6%" }}>
-      <div style={{ flex: "0 0 auto" }}> {/* Fixed width for ProfileCard */}
-      
-        <ProfileCard Id ={Id} />
-      </div>
-      <div style={{ flex: "1" }}> {/* Takes up the remaining space */}
-       <ProfileProject userID ={Id}/> 
+      <NavigationBar />
+      <div className="profilepagecontainer" >
+        <div className="profilecardcontainer">
+          {" "}
+          {/* Fixed width for ProfileCard */}
+          <ProfileCard Id={Id} />
+        </div>
+        <div className="profiledetails" >
+          {" "}
+          {/* Takes up the remaining space */}
+          <ProfileProject userID={Id} />
+        </div>
       </div>
     </div>
-  </div>
-  )
+  );
 }
 
 export default ProfilePage;

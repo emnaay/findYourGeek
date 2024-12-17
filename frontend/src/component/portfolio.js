@@ -1,5 +1,6 @@
 import React,{ useEffect, useState } from 'react';
 import { Card, Button, Col, Row } from 'react-bootstrap';
+import "../styles/profilePage.css";
 
 
 
@@ -66,16 +67,16 @@ const Portfolio = ({userID}) => {
                     <h1>{d.domain}</h1>
                 </div>
             ))} */}
-            <h2 className="text-center mb-4" style={{color:"#387373", marginTop:"-30px"}}>Previous Work</h2>
+            <h2 className="portfolio_header" >Previous Work</h2>
             <Row>
                     {data.map((d, i) => (
                     <Col md={4} key={i} className="mb-4">
                         <Card>
-                            <Card.Img variant="top"  style={{height:"150px" , width:'100%'}} />
+                            <Card.Img variant="top" className='portfoliocard_img'  />
                             <Card.Body>
                                 <Card.Title>{d.project_name}</Card.Title>
                                 <Card.Text>{d.description}</Card.Text>
-                                <div style={{display:"flex"}}>
+                                <div className='prevwork_cont' >
                                  <div>
                                   
                                         <span className="badge bg-secondary me-1">
@@ -83,7 +84,7 @@ const Portfolio = ({userID}) => {
                                         </span>
                                 
                                 </div> 
-                                <Button style={{borderRadius:"12px" , backgroundColor:"#387373"}}  target="_blank" >View Project</Button>
+                                <Button className='viewproj_button'  target="_blank" >View Project</Button>
                                 </div>
                             </Card.Body>
                         </Card>

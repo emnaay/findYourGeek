@@ -1,0 +1,21 @@
+.navbar_container{
+    background-color: #e4f2e7;
+}
+
+.navbar_subcontainer{
+    display:"flex";
+    justify-content:"space-around";
+}
+
+.buttons_container{
+    font-size: '20px'
+}
+
+.navbar_button{
+    margin: 0 40px;
+    text-decoration: none; 
+    color: black;
+    display: flex; 
+    align-items: center;
+}
+   

@@ -6,7 +6,7 @@ import {
     MDBCardImage,
     MDBCol,
 } from "mdb-react-ui-kit";
-import '../styles/Card.css';
+import "../styles/Card.css";
 import React from "react";
 
 const Card = ({ card }) => {

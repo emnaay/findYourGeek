@@ -3,32 +3,7 @@ import React, { useState } from "react";
 import logo from "../img/FYG_Logos.png";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link for routing
-
-const title = {
-  color: "#202258",
-
-  fontWeight: 1000,
-  fontFamily: "Alfa Slab One, serif",
-  fontSize: "40px",
-  fontStyle: "normal",
-};
-
-const requirement = {
-  color: "#929292",
-  fontSize: "16px",
-};
-
-const signupButtonStyle = {
-  border: "3px solid #202258",
-  padding: "12px",
-  backgroundColor: "white",
-  fontFamily: '"Open Sauce One", sans-serif',
-  fontWeight: "bold",
-  color: "#202258",
-  borderRadius: "10px",
-  fontSize: "18px",
-  width: "auto",
-};
+import "../styles/signUp.css";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -63,46 +38,34 @@ function Signup() {
   };
 
   return (
-    <section className="vh-100" style={{ backgroundColor: "white" }}>
+    <section className="global_container">
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-xl-10">
-            <div
-              className="card"
-              style={{ borderRadius: "1rem", border: "4px solid #202258" }}
-            >
+            <div className="signup_card">
               <div className="row g-0">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                   <img
                     src="https://c.stocksy.com/a/aMo200/z9/670256.jpg"
                     alt="signup form"
                     className="img-fluid"
-                    style={{ borderRadius: "1rem 0 0 1rem" }}
                   />
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                  <div
-                    className="card-body p-4 p-lg-5 text-black"
-                    style={{ paddingBottom: "0rem" }}
-                  >
+                  <div className="card-body">
                     <form onSubmit={handleSubmit}>
-                      <div className="d-flex align-items-center mb-1 pb-1">
-                        <img src={logo} style={{ width: "100px" }} />
-                        <span style={title}>FIND YOUR GEEK</span>
+                      <div className="fields_container">
+                        <img src={logo} className="signup_logo" />
+                        <span className="signup_title">FIND YOUR GEEK</span>
                       </div>
 
                       <h5
-                        className="fw-normal mb-1 pb-3"
-                        style={{ letterSpacing: "1px" }}
+                        className="signup_subheader"
                       >
                         Create a new account
                       </h5>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          gap: "20px",
-                        }}
+                      <div className="fields_wrapper"
+                        
                       >
                         {/* Username Input */}
                         <div className="form-outline mb-1">
@@ -112,14 +75,9 @@ function Signup() {
                             value={formData.username}
                             onChange={handleInputChange}
                             required
-                            className="form-control form-control-lg"
-                            style={{ border: "3px solid #93bfb7" }}
+                            className="form-controller"
                           />
-                          <label
-                            className="form-label"
-                            htmlFor="formid"
-                            style={requirement}
-                          >
+                          <label className="form-label" htmlFor="formid">
                             Username
                           </label>
                         </div>
@@ -131,14 +89,9 @@ function Signup() {
                             value={formData.description}
                             onChange={handleInputChange}
                             required
-                            className="form-control form-control-lg"
-                            style={{ border: "3px solid #93bfb7" }}
+                            className="form-controller"
                           />
-                          <label
-                            className="form-label"
-                            htmlFor="formid"
-                            style={requirement}
-                          >
+                          <label className="form-label" htmlFor="formid">
                             Description
                           </label>
                         </div>
@@ -151,14 +104,9 @@ function Signup() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="form-control form-control-lg"
-                          style={{ border: "3px solid #93bfb7" }}
+                          className="form-controller"
                         />
-                        <label
-                          className="form-label"
-                          htmlFor="formid"
-                          style={requirement}
-                        >
+                        <label className="form-label" htmlFor="formid">
                           Email address
                         </label>
                       </div>
@@ -171,14 +119,9 @@ function Signup() {
                           value={formData.phoneNumber}
                           onChange={handleInputChange}
                           required
-                          className="form-control form-control-lg"
-                          style={{ border: "3px solid #93bfb7" }}
+                          className="form-controller"
                         />
-                        <label
-                          className="form-label"
-                          htmlFor="formid"
-                          style={requirement}
-                        >
+                        <label className="form-label" htmlFor="formid">
                           Phone Number
                         </label>
                       </div>
@@ -191,12 +134,9 @@ function Signup() {
                           value={formData.password}
                           onChange={handleInputChange}
                           required
-                          className="form-control form-control-lg"
-                          style={{ border: "3px solid #93bfb7" }}
+                          className="form-controller"
                         />
-                        <label className="form-label" style={requirement}>
-                          Password
-                        </label>
+                        <label className="form-label">Password</label>
                       </div>
 
                       <div className="form-outline mb-1">
@@ -206,23 +146,20 @@ function Signup() {
                           value={formData.confirmPassword}
                           onChange={handleInputChange}
                           required
-                          className="form-control form-control-lg"
-                          style={{ border: "3px solid #93bfb7" }}
+                          className="form-controller"
                         />
-                        <label className="form-label" style={requirement}>
-                          Confirm Password
-                        </label>
+                        <label className="form-label">Confirm Password</label>
                       </div>
 
                       <div className="pt-1 mb-1">
-                        <button style={signupButtonStyle} type="submit">
+                        <button className="signup_button" type="submit">
                           Sign Up
                         </button>
                       </div>
 
-                      <p className="mb-0 pb-lg-2" style={{ color: "#393f81" }}>
+                      <p className="form_buttom" >
                         Already have an account?
-                        <Link to="/signIn" style={{ color: "#393f81" }}>
+                        <Link className="signin_link" to="/signIn" >
                           Sign In
                         </Link>
                       </p>

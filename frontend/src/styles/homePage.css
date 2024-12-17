@@ -1,0 +1,20 @@
+.overlay-text {
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  color: #202258;
+  text-align: center;
+  font-weight: 1000;
+  font-family: "Alfa Slab One", serif;
+  font-size: 60px;
+  font-style: normal;
+}
+
+.subtext {
+  font-size: 22px;
+  position: absolute;
+  top: 47%;
+  left: 6%;
+  text-align: center;
+}
