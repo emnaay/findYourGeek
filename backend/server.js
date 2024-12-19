@@ -9,6 +9,14 @@ app.use(express.json());
 
 app.use(cors());
 
+app.listen(8081, () => {
+  console.log("Server is listening on port 8081");
+});
+
+const messageRouter= require("./routes/messageRoutes");
+app.use("/", messageRouter);
+
+
 const projectsRouter = require("./routes/projectRoutes");
 app.use("/projects", projectsRouter);
 
@@ -36,6 +44,10 @@ app.use("/signup", postSignUp);
 
 const postLogIn = require("./routes/signRoute");
 app.use("/login", postLogIn);
+
+//const getMessag = require("./routes/messageRoutes");
+//app.use("/", getMessage);
+
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -255,6 +267,4 @@ app.delete('/projects/:projectID', (req, res) => {
   });
 });
 
-app.listen(8081, () => {
-  console.log("Server is listening on port 8081");
-});
+

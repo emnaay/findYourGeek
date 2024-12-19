@@ -1,0 +1,68 @@
+/*.contacts_container {
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  background-color: #080420;
+}
+
+.contacts_brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  img {
+    height: 2rem;
+  }
+  h3 {
+    color: white;
+    text-transform: uppercase;
+  }
+}
+
+.contacts_contacts {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  gap: 0.8rem;
+
+  .contacts_contact {
+    background-color: #ffffff34;
+    min-height: 5rem;
+    width: 90%;
+    border-radius: 0.2rem;
+    padding: 0.4rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+
+    .username h3 {
+      color: white;
+    }
+  }
+}
+
+.contacts_current-user {
+  background-color: #0d0d30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+
+  .avatar img {
+    height: 4rem;
+  }
+  .contacts_username h2 {
+    color: white;
+  }
+}
+
+ When ChatContainer renders, ensure it occupies full area 
+div:first-child {
+  flex: 1;
+  width: 100%;
+}
+*/

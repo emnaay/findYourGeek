@@ -1,0 +1,96 @@
+.chat_container {
+  display: grid;
+  grid-template-rows: 10% 80% 10%;
+  gap: 0.1rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 80px; 
+  box-shadow: 0 4px 8px rgba(88, 87, 87, 0.6); 
+  border: 2px  #727174;
+}
+
+@media screen and (min-width: 720px) and (max-width: 1080px) {
+  .container {
+    grid-template-rows: 15% 70% 15%;
+  }
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.user-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder if no avatar */
+}
+
+.username h3 {
+  color: rgb(72, 70, 70);
+}
+
+.chat-messages {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: #ffffff39;
+  width: 0.1rem;
+  border-radius: 1rem;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  box-shadow: #454242 solid;
+}
+
+.message .content {
+  max-width: 40%;
+  overflow-wrap: break-word;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  color: #454242;
+}
+
+@media screen and (min-width: 720px) and (max-width: 1080px) {
+  .message .content {
+    max-width: 70%;
+  }
+}
+
+.sended {
+  justify-content: flex-end;
+  
+
+}
+
+.sended .content {
+  background-color: #e4f2e7;
+}
+
+.recieved {
+  justify-content: flex-start;
+}
+
+.recieved .content {
+  background-color: #e4f2e7;
+}

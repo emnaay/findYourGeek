@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProjectCard from "./pages/projectPage";
 import SignupPage from "./pages/SignUpPageY";
 import LoginPage from "./pages/LogInPageY";
+import Contacts from "./component/Contacts"
 
 function App() {
   const [data, setData] = useState([]);
@@ -29,11 +30,10 @@ function App() {
           <Route path="/signUp" element={<SignupPage />} />
           {/* <Route path="/signup" element={<SignUpLoginPage />} /> */}
           {/* <Route path="/ProjectCard" element={<ProjectCard />} /> */}
-          {/* <Route path="/profile/" element={<ProfilePage />} /> */}
+          { <Route path="/profile/:id" element={<ProfilePage />} /> }
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/signIn" element={<LoginPage />} />
           {
-            //profile
             data.map((d, i) => (
               <Route
                 key={i}
