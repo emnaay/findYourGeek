@@ -16,7 +16,7 @@ const User = {
 
   // Create a new user
   create: (userData, callback) => {
-    const sql = "INSERT INTO users (userName, email, password, description) VALUES (?, ?, ?, ?)";
+    const sql = "INSERT INTO users (userName, email, password, phone_number, rank,description) VALUES (?, ?, ?, ?)";
     const { userName, email, password, description } = userData;
     db.query(sql, [userName, email, password, description], callback);
   },

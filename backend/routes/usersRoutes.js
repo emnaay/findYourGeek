@@ -13,6 +13,6 @@ usersRoutes.get("/:Id", getUserById); // Get a user by ID
 
 usersRoutes.post("/", createUser); // Create a new user
 usersRoutes.put("/:Id", updateUser); // Update a user by ID
-usersRoutes.delete("/:Id", deleteUser); 
+usersRoutes.delete("/:Id", deleteUser); // Delete a user by ID
 
 module.exports = usersRoutes;

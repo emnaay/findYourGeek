@@ -9,8 +9,8 @@ import SignupPage from "./pages/SignUpPageY";
 import LoginPage from "./pages/LogInPageY";
 import Contacts from "./component/Contacts"
 import ProfileVisitorPage from "./pages/profileVisitorPage";
-import Dashboard from "./pages/DashboardPage"
-
+import Dashboard from "./pages/DashboardPage";
+import SignOutButton from "./component/signOut";
 function App() {
   const [data, setData] = useState([]);
 
@@ -35,6 +35,8 @@ function App() {
           { <Route path="/profile/:id" element={<ProfilePage />} /> }
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/signin" element={<LoginPage />} />
+          <Route path="/signout" element={<SignOutButton />} />
+
           
           <Route path="/signIn" element={<LoginPage />} />
 
@@ -79,3 +81,5 @@ function App() {
 }
 
 export default App;
+
+
