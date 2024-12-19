@@ -1,6 +1,7 @@
 import React from "react";
+// import '../styles/projectCardStyle.css'
 import "../styles/Card.css"
-import NavigationBar from "../component/NavigationBar";
+import NavigationBar from "../component/NavigationBarY";
 import { useState, useEffect } from "react";
 
 
@@ -50,9 +51,9 @@ const ProjectCard = ({Id}) => {
            <div class="cards">
            <div class="card">
            <div class="card-profile-icon">👤</div>
-           <div class="card-name">{d.userID}</div>
+           <div class="card-name">{d.userName}</div>
            <div class="card-description">{d.projectName}</div>
-           {/* <div class="">{d.skills_needed}</div> */}
+           <div class="">{d.skills_needed}</div> 
            <a href="#" class="card-price-button">{d.price} DT</a>
          </div>
          

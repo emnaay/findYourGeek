@@ -1,8 +1,9 @@
-
-
 import React from 'react';
 import homepageImage from '../img/homepage.png';
 import '../styles/welcome.css';
+// import '../App.css'; // Adjust the import based on your file structure
+
+
 
 function Home() {
   return (

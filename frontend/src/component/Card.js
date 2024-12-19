@@ -6,9 +6,9 @@ import {
   MDBCardImage,
   MDBCol,
 } from "mdb-react-ui-kit";
+import React from "react";
 import '../styles/Card.css';
 
-import React from "react";
 const Card = ({ card }) => {
   return (
     <MDBCol md="12" lg="10" xl="8">

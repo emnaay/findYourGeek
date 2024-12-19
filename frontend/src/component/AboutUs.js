@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import CardCarousel from "./CardCarousel";
+// import '../App.css';
 import '../img/homepage.png';
 import '../styles/welcome.css';
 

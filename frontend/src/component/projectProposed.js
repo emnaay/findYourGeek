@@ -43,6 +43,7 @@ function MyVerticallyCenteredModal(props) {
 function ProjectProposed({userID}){
     const [show, setShow] = useState(false);
     const [modalShow, setModalShow] = React.useState(false);
+    const [selectedProjectId, setSelectedProjectId] = useState(null);
     
     const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -64,6 +65,30 @@ function ProjectProposed({userID}){
       return <div>Loading...</div>; // lezma bc menghirha el prog mayestanech chwaya lin tji el data soo error
   }
 
+  
+
+  const handelDelete  = (selectedProjectId) =>{
+    console.log("dedee" , selectedProjectId);
+    fetch(`http://localhost:8081/projects/${selectedProjectId}`, {
+      method: 'DELETE',
+  })
+      .then((response) => {
+          if (response.ok) {
+              console.log(`Project ${selectedProjectId} deleted successfully`);
+              // Update the state to remove the deleted project
+              setData((prevData) =>
+                  prevData.filter((project) => project.projectID !== selectedProjectId)
+              );
+              setShow(false); // Close the modal
+          } else {
+              console.error("Failed to delete the project");
+          }
+      })
+      .catch((error) => {
+          console.error("Error deleting project:", error);
+      });
+  }
+
 
     return(
         <div>
@@ -74,7 +99,13 @@ function ProjectProposed({userID}){
                   <div>{d.projectName}</div>
                   <div>{d.price} DT</div>
 
-                <Button style={{background:"none" , border:"none" , color:"black" , width:"10%"}} onClick={handleShow}> <MdDelete size={30} /> </Button>
+                <Button style={{background:"none" , border:"none" , color:"black" , width:"10%"}}  onClick={() => {
+                      setSelectedProjectId(d.projectID); 
+                      console.log("clicked on poubelle")
+                      handleShow(); 
+            }} > 
+    
+              <MdDelete  size={30} /> </Button>
                 </Card.Header>
 
                 <Card.Body>
@@ -95,7 +126,7 @@ function ProjectProposed({userID}){
             </Card>
             ))}
            
-            <AddProjectButton/>
+            <AddProjectButton userID ={userID}/>
            
 
             {/* pop upp */}
@@ -115,7 +146,7 @@ function ProjectProposed({userID}){
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={() => handelDelete(selectedProjectId)}>Delete</Button>
         </Modal.Footer>
       </Modal>
 
