@@ -1,5 +1,7 @@
 const db = require("../database/db");
 
+
+
 // Get all messages between two users
 const getMessages = (req, res) => {
   const { from, to } = req.body;  // Extract from and to from request body

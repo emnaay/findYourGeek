@@ -2,6 +2,19 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8081"; // Backend URL
 
+export const getContacts = async (user_id) => {
+  try {
+    const response = await axios.post(`http://localhost:8081/contacts/get`, {
+      user_id: user_id, // Send `user_id` in the body
+    });
+
+    return response.data; // Return the data for further use
+  } catch (error) {
+    console.error("Error fetching contacts:", error);
+    return null;
+  }
+};
+
 export const getMessages = async (from, to) => {
   try {
     const response = await axios.post(`http://localhost:8081/messages/get`, {

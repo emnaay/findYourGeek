@@ -1,21 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import "../styles/chatContacts.css";
 import ChatContainer from "../component/ChatContainer.js";
+import { getContacts } from "../api"; // Import API function
 
-export default function Contacts() {
+const Contacts = () => {
+  const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
 
-  const staticContacts = [
-    { _id: 1, username: "John Doe"},
-    { _id: 2, username: "Jane Smith" },
-    { _id: 3, username: "Sam Wilson"},
-  ];
-
+  const sender_id = "rahma"; // Example sender ID
   const staticCurrentUser = {
     username: "Current User",
-    
   };
+
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        if (sender_id) {
+          const contactsData = await getContacts(sender_id); // Pass `sender_id` directly
+          if (contactsData?.success) {
+            console.log("Fetched contacts:", contactsData.contacts);
+            setContacts(contactsData.contacts); // Update contacts state
+          } else {
+            console.error("Failed to fetch contacts");
+          }
+        }
+      } catch (error) {
+        console.error("Error while fetching contacts:", error);
+      }
+    };
+
+    fetchContacts();
+  }, [sender_id]);
 
   const handleContactClick = (contact) => {
     setSelectedContact(contact); // Set the selected contact
@@ -24,29 +40,33 @@ export default function Contacts() {
   return (
     <Container>
       {selectedContact ? (
-        <ChatContainer />
+        <ChatContainer selectedContact={selectedContact} />
       ) : (
         <>
           <div className="brand">
             <h3>My contacts:</h3>
           </div>
           <div className="contacts">
-            {staticContacts.map((contact) => (
-              <div
-                key={contact._id}
-                className="contact"
-                onClick={() => handleContactClick(contact)}
-              >
-                <div className="avatar">
-                  
+            {contacts.length > 0 ? (
+              contacts.map((contact) => (
+                <div
+                  key={contact._id}
+                  className="contact"
+                  onClick={() => handleContactClick(contact)}
+                >
+                  <div className="avatar">
+                    {/* Avatar Placeholder */}
+                  </div>
+                  <div className="username">
+                    <h3>{contact.user_id}</h3>
+                  </div>
                 </div>
-                <div className="username">
-                  <h3>{contact.username}</h3>
-                </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p>No contacts found.</p>
+            )}
           </div>
-          <div className="current-user"> 
+          <div className="current-user">
             <div className="username">
               <h2>{staticCurrentUser.username}</h2>
             </div>
@@ -55,7 +75,12 @@ export default function Contacts() {
       )}
     </Container>
   );
-}
+};
+
+export default Contacts;
+
+
+
 
 const Container = styled.div`
   height: 100vh;

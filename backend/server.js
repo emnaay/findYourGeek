@@ -23,6 +23,9 @@ app.use("/projects", projectsRouter);
 const signRoutes = require("./routes/signRoute");
 app.use("/api", signRoutes);
 
+const contactsRoutes = require("./routes/contactsRoutes");
+app.use("/contacts", contactsRoutes);
+
 const portfolioRouter = require("./routes/portfolioRoute");
 app.use("/portfolio", portfolioRouter);
 
