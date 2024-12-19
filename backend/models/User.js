@@ -35,4 +35,12 @@ const User = {
   },
 };
 
-module.exports = User;
+// User Model: Search users by username
+const searchByUsername = (username, callback) => {
+  const query = "SELECT * FROM users WHERE userName LIKE ?";
+  db.query(query, [`%${username}%`], callback);
+};
+
+module.exports = { ...User, searchByUsername };
+
+// module.exports = User;

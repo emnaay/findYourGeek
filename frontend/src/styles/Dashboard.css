@@ -1,0 +1,269 @@
+/* Dashboard Container Styling */
+.dashboard-container {
+    padding: 20px;
+
+}
+
+
+
+/* Header Styling */
+.dashboard-header {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Cards Section Styling */
+.cards-section {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+/* Individual Card Styling */
+.card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f9f9f9;
+    width: 20%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Chart Section Styling */
+.chart-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+/* Chart Container */
+.chart-container {
+    width: 45%;
+}
+
+/* User Search Section */
+.search-section {
+    width: 45%;
+}
+
+/* Table Styling */
+.table-container {
+    margin-top: 20px;
+}
+
+.table-cell {
+    text-align: center;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Search Container Styling */
+.search-input-container {
+    position: relative;
+    width: 100%;
+    margin: 20px auto; /* Center the search bar */
+    display: flex;
+}
+
+/* Search Input Field */
+.search-input {
+    height: 50px;
+    width: 100%;
+    border-radius: 30px;
+    padding-left: 35px; /* Space for the search icon */
+    border: none;
+    outline: none; /* Remove focus border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+    font-size: 16px;
+    border: 2px solid #202258;
+
+}
+
+/* Search Icon Styling */
+.search-icon {
+    position: static;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #888; /* Grey color */
+    font-size: 18px;
+}
+
+/* Modal Styling */
+.modal-container {
+    max-width: 800px;
+}
+
+/* Pagination Styling */
+.pagination-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.pagination-btn {
+    margin-left: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination-btn:hover {
+    background-color: #45a049;
+}
+
+/* Table Row Hover Effect */
+.table-row:hover {
+    background-color: #f1f1f1;
+}
+
+/* Delete and View Icons Styling */
+.delete-icon, .view-icon {
+    cursor: pointer;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.delete-icon:hover {
+    color: red;
+}
+
+.view-icon:hover {
+    color: blue;
+}
+
+/* Dialog Styling */
+.dialog-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.dialog-content {
+    margin-bottom: 20px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Card Content Styling */
+.card-content {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Avoid affecting the default Material UI table styles */
+.MuiTable-root {
+    /* Default table styles from Material UI should remain unaffected */
+}
+
+/* Custom styles for the icons inside the table */
+.search-icon {
+    cursor: pointer;
+    color: blue;
+}
+
+/* Styling for delete icon in the table */
+.delete-icon {
+    cursor: pointer;
+    color: red;
+}
+
+/* Tooltip for delete icon */
+.MuiTooltip-tooltip {
+    font-size: 14px;
+    background-color: rgba(0, 0, 0, 0.87);
+    color: white;
+}
+
+/* Optional: Style the rows on hover */
+.MuiTableRow-root:hover {
+    background-color: #f5f5f5;
+}
+
+/* Optional: Style the text in the TableCell if needed */
+.MuiTableCell-root {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Custom Dialog Styling */
+.custom-dialog {
+    width: 35%; /* Set the dialog width to 35% */
+    height: 60%;
+    max-width: none; /* Allow custom width without max-width constraints */
+}
+
+.custom-dialog-content {
+    padding: 20px; /* Optional padding inside the dialog content */
+}
+
+.custom-dialog-content .MuiDialog-paper {
+    width: 25% !important;
+    border: 15px solid #93bfb7;  
+    border-radius: 25px;
+
+}
+
+.project-container {
+    display: flex; /* Aligns child items horizontally */
+    flex-wrap: wrap; /* Allows child items to wrap to the next line when necessary */
+    gap: 10px; /* Adds space between each project box */
+  }
+  
+  .project-box {
+    border: 2px solid #93bfb7;
+    border-radius: 15px; /* Border around each project */
+    padding: 10px;
+    font-size: 14px; /* Font size for the project names */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    position: relative;
+}
+.project-box p {
+    margin-top: 0;  /* No top margin */
+    margin-bottom: 0;  /* Bottom margin of 1rem */
+  }
+
+  
+.close-button {
+    border: 3px solid #202258 !important;
+  padding: 5px !important;
+  background-color: white !important;
+  font-weight: bold !important;
+  color: #202258 !important;
+  border-radius: 10px !important;
+  font-size: 18px !important;
+  width: auto !important;
+  }
+
+  /* Apply border to the entire table container */
+.table-container {
+    border: 1px solid #202258;
+    border-radius: 8px; /* Optional, adds rounded corners to the table container */
+  }
+  
+  /* Apply border to the individual table cells */
+  .TableCell-root {
+    border: 1px solid #202258;
+  }
+  
+  /* Optional: style the table header for distinction */
+  .MuiTableHead-root .MuiTableCell-root {
+    background-color: #f1f1f1; /* Light grey background for the header */
+    font-weight: bold;
+  }
+
+  

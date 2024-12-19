@@ -3,8 +3,8 @@ import AboutUs from '../component/AboutUs';
 import FieldCarousel from '../component/FieldCarousel';
 import Home from '../component/Home';
 import NavigationBar from '../component/NavigationBarY';
-import '../styles/welcomePage.css'
-
+//import '../styles/welcome.css';
+//import '../styles/welcomePage';
 const Welcome = () => {
   return (
     <div>

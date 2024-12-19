@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-import '../styles/projectCardStyle.css';
+//import '../styles/projectCardStyle.css';
 import "../styles/Card.css";
 import NavigationBar from "../component/NavigationBarY";
 import Button from 'react-bootstrap/Button';

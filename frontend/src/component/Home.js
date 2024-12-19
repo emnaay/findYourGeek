@@ -5,6 +5,8 @@ import "../styles/homePage.css";
 // import '../App.css'; // Adjust the import based on your file structure
 
 import "../styles/welcomePage.css";
+
+
 function Home() {
   return (
     <div

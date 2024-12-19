@@ -4,7 +4,10 @@ const usersRoutes = express.Router();
 
 const { getUsers, getUserById, loginUser, createUser, updateUser, deleteUser } = require("../controllers/usersControllers");
 
+const { searchUsers } = require("../controllers/usersControllers");
 // Routes for user operations
+usersRoutes.get("/search", searchUsers);// Add this route for searching users
+
 usersRoutes.get("/", getUsers); // Get all users
 usersRoutes.get("/:Id", getUserById); // Get a user by ID
 

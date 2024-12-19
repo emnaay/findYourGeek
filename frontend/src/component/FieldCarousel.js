@@ -21,6 +21,7 @@ const FieldCarousel = () => {
 
 
       return (
+        
         <div className="carousel-container">
             <Slider {...settings}>
                 {fields.map((field, index) => (

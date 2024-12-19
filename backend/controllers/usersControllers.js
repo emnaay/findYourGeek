@@ -53,17 +53,25 @@ const updateUser = (req, res) => {
 // Delete a user
 const deleteUser = (req, res) => {
   const { Id } = req.params;
-  User.delete(Id, (err, results) => {
+  User.delete(Id, (err, result) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
-    if (results.affectedRows === 0) {
-      return res.status(404).json({ message: "User not found" });
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "User not found" });
     }
     res.status(200).json({ message: "User deleted successfully" });
   });
 };
-
-
-
-module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser };
+// Search users by username (this can be adapted to other fields)
+const searchUsers = (req, res) => {
+  const { username } = req.query;
+  User.searchByUsername(username, (err, results) => {
+    if (err) {
+      console.error("Error searching users:", err);
+      return res.status(500).json({ error: err.message });
+    }
+    res.status(200).json(results);
+  });
+};
+module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser, searchUsers };
