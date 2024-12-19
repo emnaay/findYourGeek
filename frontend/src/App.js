@@ -8,6 +8,7 @@ import ProjectCard from "./pages/projectPage";
 import SignupPage from "./pages/SignUpPageY";
 import LoginPage from "./pages/LogInPageY";
 import Contacts from "./component/Contacts"
+import ProfileVisitorPage from "./pages/profileVisitorPage";
 
 function App() {
   const [data, setData] = useState([]);
@@ -32,7 +33,8 @@ function App() {
           {/* <Route path="/ProjectCard" element={<ProjectCard />} /> */}
           { <Route path="/profile/:id" element={<ProfilePage />} /> }
           <Route path="/welcome" element={<Welcome />} />
-          <Route path="/signIn" element={<LoginPage />} />
+          <Route path="/signin" element={<LoginPage />} />
+          
           {
             data.map((d, i) => (
               <Route
@@ -50,6 +52,17 @@ function App() {
                 key={i}
                 path={`/ProjectCard/${d.Id}`}
                 element={<ProjectCard Id={d.Id} />}
+              />
+            ))
+          }
+
+{
+            //tu visites profile abd e5er
+            data.map((d, i) => (
+              <Route
+                key={i}
+                path={`/ProfileVisitorPage/${d.Id}`}
+                element={<ProfileVisitorPage Id={d.Id} />}
               />
             ))
           }

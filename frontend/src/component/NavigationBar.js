@@ -26,7 +26,7 @@
 
 //           <div>
 //             <Nav className="me-auto" style={{ fontSize: "20px" }}>
-//               <Nav.Link as={Link} to="/login" style={linkStyle}>
+//               <Nav.Link as={Link} to="" style={linkStyle}>
 //                 LOGIN
 //               </Nav.Link>
 //               <Nav.Link as={Link} to="/signup" style={linkStyle}>

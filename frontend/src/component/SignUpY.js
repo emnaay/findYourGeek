@@ -3,9 +3,36 @@ import React, { useState } from "react";
 import logo from "../img/FYG_Logos.png";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link for routing
-import "../styles/signUp.css";
+import { useNavigate } from "react-router-dom";
+const title = {
+  color: "#202258",
+
+  fontWeight: 1000,
+  fontFamily: "Alfa Slab One, serif",
+  fontSize: "40px",
+  fontStyle: "normal",
+};
+
+const requirement = {
+  color: "#929292",
+  fontSize: "16px",
+};
+
+const signupButtonStyle = {
+  border: "3px solid #202258",
+  padding: "12px",
+  backgroundColor: "white",
+  fontFamily: '"Open Sauce One", sans-serif',
+  fontWeight: "bold",
+  color: "#202258",
+  borderRadius: "10px",
+  fontSize: "18px",
+  width: "auto",
+};
 
 function Signup() {
+      const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -27,9 +54,10 @@ function Signup() {
     // Proceed with form submission logic
     console.log(formData);
     axios
-      .post("http://localhost:8081/signup", formData)
+      .post("http://localhost:8081/api/signup", formData)
       .then((response) => alert("Sign-Up Successful!"))
       .catch((error) => console.error("Error during sign-up:", error));
+      navigate(`/signIn`);
   };
 
   const handleInputChange = (e) => {
@@ -159,7 +187,7 @@ function Signup() {
 
                       <p className="form_buttom" >
                         Already have an account?
-                        <Link className="signin_link" to="/signIn" >
+                        <Link className="signin_link" to="/signin" >
                           Sign In
                         </Link>
                       </p>

@@ -8,10 +8,10 @@ import '../styles/welcomePage.css'
 const Welcome = () => {
   return (
     <div>
-       <NavigationBar />
+      <NavigationBar />
       <Home /> 
-  <FieldCarousel />  
-       <AboutUs />
+      <FieldCarousel />  
+      <AboutUs />
     </div>
   );
 };

@@ -1,36 +1,60 @@
-import Button from "react-bootstrap/Button";
-import { useState, useEffect } from "react";
-
-import Card from "react-bootstrap/Card";
-import Modal from "react-bootstrap/Modal";
-import React from "react";
-import { FaFacebookMessenger } from "react-icons/fa";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
+import { FaFacebookMessenger } from 'react-icons/fa';
 import { MdDelete } from "react-icons/md";
 import AddProjectButton from "./addProjectButton";
 import "../styles/profilePage.css";
 
-// pop upp li feha el propositions
-function MyVerticallyCenteredModal(props) {
+// Modal Component for displaying project propositions
+function MyVerticallyCenteredModal({ projectID, ...props }) { 
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if (projectID) {
+      fetch(`http://localhost:8081/applications/${projectID}`)
+        .then(res => res.json())
+        .then(data => setData(data))
+        .catch(err => console.log(err));
+    }
+  }, [projectID]);
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal {...props} size="lg" centered>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          You have 3 propositions
+        <Modal.Title>
+          {data.length > 0 
+            ? `You have ${data.length} propositions` 
+            : "No proposition yet"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className="proposed_project_body" >
-          <h4>bomo choula</h4>
-          <p> 300£ </p>
-          <a href="#" className="proposed_project_link" >
-            <FaFacebookMessenger size={24} />
-          </a>
-        </div>
+        {data.length > 0 ? (
+          data.map((d, i) => (
+            <div key={i} style={{ display: "flex", justifyContent: "space-between", marginBottom: "15px" }}>
+              <div>
+                <h4>{d.userName} offer: {d.price_proposed} DT</h4>
+                <p>Application letter: {d.application_letter}</p>
+              </div>
+              <div>
+                <a href="#" style={{ color: '#387373', margin: '0 10px' }}>
+                  <FaFacebookMessenger size={24} />
+                </a>
+                <Link to={`/ProfileVisitorPage/${d.userID}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  👤
+                </Link>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No propositions available at the moment.</p>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
@@ -39,114 +63,92 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
+// Main Component to display projects
 function ProjectProposed({ userID }) {
-  const [show, setShow] = useState(false);
-  const [modalShow, setModalShow] = React.useState(false);
-  const [selectedProjectId, setSelectedProjectId] = useState(null);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [data, setData] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
+  const [deleteModalShow, setDeleteModalShow] = useState(false);
+
   useEffect(() => {
     fetch(`http://localhost:8081/projects/${userID}`)
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setData(data); // Update the state with the fetched data
-      })
+      .then(setData)
       .catch((err) => console.log(err));
-  }, [userID]); // Dependency array should include Id
+  }, [userID]);
 
   if (!data) {
-    return <div>Loading...</div>; // lezma bc menghirha el prog mayestanech chwaya lin tji el data soo error
+    return <div>Loading...</div>;
   }
 
-  const handelDelete = (selectedProjectId) => {
-    console.log("dedee", selectedProjectId);
-    fetch(`http://localhost:8081/projects/${selectedProjectId}`, {
-      method: "DELETE",
-    })
+  const handleDelete = (projectID) => {
+    fetch(`http://localhost:8081/projects/${projectID}`, { method: "DELETE" })
       .then((response) => {
         if (response.ok) {
-          console.log(`Project ${selectedProjectId} deleted successfully`);
-          // Update the state to remove the deleted project
-          setData((prevData) =>
-            prevData.filter(
-              (project) => project.projectID !== selectedProjectId
-            )
-          );
-          setShow(false); // Close the modal
+          setData(prevData => prevData.filter(project => project.projectID !== projectID));
+          setDeleteModalShow(false);
         } else {
           console.error("Failed to delete the project");
         }
       })
-      .catch((error) => {
-        console.error("Error deleting project:", error);
-      });
+      .catch((error) => console.error("Error deleting project:", error));
   };
 
   return (
     <div>
-      {data.map((d, i) => (
-        <Card className="proposed_project_card" key={i} >
-          <Card.Header
-            as="h5"
-            className="proposed_project_card_header"
-            >
-            <div>{d.projectName}</div>
-            <div>{d.price} DT</div>
-
+      {data.map((project) => (
+        <Card key={project.projectID} style={{ width: '100%', marginBottom: '20px' }}>
+          <Card.Header style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>{project.projectName}</div>
             <Button
-            className="proposed_project_button"
-              
+              style={{ background: "none", border: "none", color: "black" }}
               onClick={() => {
-                setSelectedProjectId(d.projectID);
-                console.log("clicked on poubelle");
-                handleShow();
+                setSelectedProjectId(project.projectID);
+                setDeleteModalShow(true);
               }}
             >
-              <MdDelete size={30} />{" "}
+              <MdDelete size={30} />
             </Button>
           </Card.Header>
-
           <Card.Body>
-            <Card.Title>{d.price} DT</Card.Title>
-            <Card.Text>{d.description}</Card.Text>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
-              Proposition
+            <Card.Title>{project.price} DT</Card.Title>
+            <Card.Text>{project.description}</Card.Text>
+            <Button 
+              variant="primary" 
+              onClick={() => {
+                setSelectedProjectId(project.projectID);
+                setModalShow(true);
+              }}
+            >
+              Propositions
             </Button>
-
-            <MyVerticallyCenteredModal
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            />
           </Card.Body>
         </Card>
       ))}
-
       <AddProjectButton userID={userID} />
 
-      {/* pop upp */}
+      {/* Proposition Modal */}
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        projectID={selectedProjectId}
+      />
 
+      {/* Delete Confirmation Modal */}
       <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
+        show={deleteModalShow}
+        onHide={() => setDeleteModalShow(false)}
+        centered
       >
         <Modal.Header closeButton>
-          <Modal.Title>Project Title</Modal.Title>
+          <Modal.Title>Delete Project</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this project</Modal.Body>
+        <Modal.Body>Are you sure you want to delete this project?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+          <Button variant="secondary" onClick={() => setDeleteModalShow(false)}>
+            Cancel
           </Button>
-          <Button
-            variant="danger"
-            onClick={() => handelDelete(selectedProjectId)}
-          >
+          <Button variant="danger" onClick={() => handleDelete(selectedProjectId)}>
             Delete
           </Button>
         </Modal.Footer>

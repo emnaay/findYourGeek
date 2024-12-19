@@ -29,7 +29,7 @@ function AddProjectButton({userID}) {
 
     const { projectName, userID, description, skills_needed, price } = projectData;
     
-    axios.post("http://localhost:8081/newProject", { projectName, userID, description, skills_needed, price })
+    axios.post("http://localhost:8081/projects", { projectName, userID, description, skills_needed, price })
       .then((res) =>  {
         console.log("Server response:", res.data);
         if (res.data.status === "Project Title alredy used") {

@@ -1,48 +1,64 @@
-const db = require("../database/db");
+const Project = require("../models/Project");
 
 const getProjects = (req, res) => {
-  const sql = `
-    SELECT projects.*, users.userName 
-    FROM projects 
-    JOIN users ON projects.userID = users.Id;
-  `;
-  db.query(sql, (err, data) => {
-    if (err) return res.json(err);
+  Project.getAll((err, data) => {
+    if (err) return res.status(500).json(err);
     return res.json(data);
   });
 };
 
 const getProjectById = (req, res) => {
   const userID = req.params.userID;
-  const sql = "SELECT * FROM projects WHERE userID = ?";
-
-  db.query(sql, [userID], (err, data) => {
-    if (err) return res.json(err);
+  Project.getByUserId(userID, (err, data) => {
+    if (err) return res.status(500).json(err);
     return res.json(data);
   });
 };
 
 const postNewProject = (req, res) => {
-  const { projectName, userID, description, skills_needed, price } = req.body;
-  const checkProjectSql = "SELECT * FROM projects WHERE projectName = ?";
-  db.query(checkProjectSql, [projectName], (err, data) => {
-    if (err) return res.json("ERROR");
+  const projectData = req.body;
+
+  // Check if project name is already used
+  Project.checkProjectName(projectData.projectName, (err, data) => {
+    if (err) return res.status(500).json("ERROR");
     if (data.length > 0) {
-      return res.json({ status: "Project Title alredy used" });
-    } else {
-      console.log("added");
-      const insertProjectSql =
-        "INSERT INTO projects (projectName, userID,  description, skills_needed, price) VALUES (?, ?, ?, ?, ?)";
-      db.query(insertProjectSql, [projectName, userID, description, skills_needed, price], (err, result) => {
-        if (err) return res.json("ERROR");
-        return res.json({
-          status: "Project Added",
-          
-          project: { projectName, userID, description, skills_needed, price },
-        });
-      });
+      return res.status(400).json({ status: "Project Title already used" });
     }
+
+    // Add the new project if the name is unique
+    Project.create(projectData, (err, result) => {
+      if (err) return res.status(500).json("ERROR");
+      return res.json({
+        status: "Project Added",
+        project: projectData,
+      });
+    });
   });
 };
 
-module.exports = { getProjects, getProjectById, postNewProject};
+const updateProject = (req, res) => {
+  const projectID = req.params.projectID;
+  const projectData = req.body;
+
+  Project.update(projectID, projectData, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.json({ message: "Project updated successfully!", data });
+  });
+};
+
+const deleteProject = (req, res) => {
+  const projectID = req.params.projectID;
+
+  Project.delete(projectID, (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.json({ message: "Project deleted successfully!" });
+  });
+};
+
+module.exports = {
+  getProjects,
+  getProjectById,
+  postNewProject,
+  updateProject,
+  deleteProject,
+};

@@ -12,9 +12,9 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios
-      .post("http://localhost:8081/login", formData)
+      .post("http://localhost:8081/api/signin", formData,()=>{console.log("aaaaaaaa", formData);
+      })
       .then((response) => {
         if (response.data.status === "Login Successful") {
           alert("Login successful!");
@@ -33,6 +33,9 @@ function Login() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+
+
 
   return (
     <section className="vh-100">
@@ -60,10 +63,14 @@ function Login() {
 
                       <div className="form-outline mb-4">
                         <input
-                          type="email"
-                          name="email"
+                          type="text"
+                           name="email"
+                          //value={email}
+                          //onChange={(e) => setEmail(e.target.value)}
                           value={formData.email}
                           onChange={handleInputChange}
+                          // value={formData.email}
+                          // onChange={handleInputChange}
                           required
                           className="form-control"
                         />
@@ -78,6 +85,9 @@ function Login() {
                           name="password"
                           value={formData.password}
                           onChange={handleInputChange}
+                          //onChange={(e) => setPassword(e.target.value)}
+                          // value={formData.password}
+                          // onChange={handleInputChange}
                           required
                           className="form-control"
                           

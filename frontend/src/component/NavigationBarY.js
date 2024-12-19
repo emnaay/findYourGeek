@@ -24,7 +24,7 @@ function NavigationBar() {
           <div>
             <Nav className="buttons_container">
               {/* Use Link for navigation */}
-              <Link to="/signIn" className="navbar_button">
+              <Link to="/signin" className="navbar_button">
                 LOGIN
               </Link>
               <Link to="/signUp" className="navbar_button">
