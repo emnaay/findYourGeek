@@ -1,4 +1,6 @@
 const db = require("../database/db");
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const postSignUp = (req, res) => {
   const { username, password, email } = req.body;
@@ -38,6 +40,8 @@ const postSignUp = (req, res) => {
 //   });
 // };
 
+
+
 const postSignIn = (req, res) => {
   const { email, password } = req.body;
   console.log("Received email from frontend:", email);
@@ -50,17 +54,31 @@ const postSignIn = (req, res) => {
   const query = "SELECT * FROM users WHERE email = ? AND password = ?";
   console.log("Executing query:", query, email, password);
 
-  // Using the query method from mysql
+  // Query the database for the user
   db.query(query, [email, password], (error, results) => {
     if (error) {
       console.error("Error during sign-in:", error);
       return res.status(500).json({ message: "Server error" });
     }
 
-    console.log("AAAAAAAAAAAAAA Query results:", results);
+    console.log("Query results:", results);
 
     if (results.length > 0) {
-      return res.status(200).json({ message: "Login successful", user: results[0] });
+      const user = results[0];
+
+      // Generate JWT token with user ID and role
+      const token = jwt.sign(
+        { id: user.Id, role: user.role }, // Payload (user details)
+        process.env.JWT_SECRET, // Secret key from .env file
+        { expiresIn: "1h" } // Token expiration time
+      );
+
+      // Return the token along with user details
+      return res.status(200).json({
+        message: "Login successful",
+        user: { id: user.Id, email: user.email, role: user.role },
+        token,
+      });
     } else {
       return res.status(401).json({ message: "Invalid email or password" });
     }

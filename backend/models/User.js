@@ -16,17 +16,17 @@ const User = {
 
   // Create a new user
   create: (userData, callback) => {
-    const sql = "INSERT INTO users (userName, email, password, description) VALUES (?, ?, ?, ?)";
-    const { userName, email, password, description } = userData;
-    db.query(sql, [userName, email, password, description], callback);
-  },
+    const sql = "INSERT INTO users (userName, email, password, description, role) VALUES (?, ?, ?, ?, ?)";
+    const { userName, email, password, description, role = 'user' } = userData; // Default role is 'user'
+    db.query(sql, [userName, email, password, description, role], callback);
+  },  
 
   // Update a user by ID
   update: (id, userData, callback) => {
-    const sql = "UPDATE users SET userName = ?, email = ?, password = ?, description = ? WHERE Id = ?";
-    const { userName, email, password, description } = userData;
-    db.query(sql, [userName, email, password, description, id], callback);
-  },
+    const sql = "UPDATE users SET userName = ?, email = ?, password = ?, description = ?, role = ? WHERE Id = ?";
+    const { userName, email, password, description, role } = userData;
+    db.query(sql, [userName, email, password, description, role, id], callback);
+  },  
 
   // Delete a user by ID
   delete: (id, callback) => {
@@ -40,6 +40,9 @@ const searchByUsername = (username, callback) => {
   const query = "SELECT * FROM users WHERE userName LIKE ?";
   db.query(query, [`%${username}%`], callback);
 };
+
+
+  
 
 module.exports = { ...User, searchByUsername };
 
