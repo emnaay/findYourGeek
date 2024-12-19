@@ -40,25 +40,43 @@ const Dashboard = ({ userID }) => {
 
   // Fetch dashboard data
   useEffect(() => {
-    axios.get("http://localhost:8081/dashboard")
-      .then(response => {
+    axios
+      .get("http://localhost:8081/dashboard")
+      .then((response) => {
         const data = response.data;
+
+        // Update dashboard data state
         setDashboardData(data);
+
+        // Update chart data
         setChartData({
-          labels: ["Total Accounts", "Total Projects", "Projects Today", "Users Online"],
-          datasets: [{
-            label: "Dashboard Metrics",
-            data: [data.total_accounts, data.total_projects, data.projects_today, data.users_online],
-            backgroundColor: ["rgba(75, 192, 192, 0.6)", "rgba(153, 102, 255, 0.6)", "rgba(255, 159, 64, 0.6)", "rgba(54, 162, 235, 0.6)"],
-            borderColor: ["rgba(75 , 192, 192, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)", "rgba(54, 162, 235, 1)"],
-            borderWidth: 1,
-          }]
+          labels: ["Total Accounts", "Total Projects"],
+          datasets: [
+            {
+              label: "Dashboard Metrics",
+              data: [data.total_accounts, data.total_projects],
+              backgroundColor: [
+                "rgba(75, 192, 192, 0.6)",
+                "rgba(153, 102, 255, 0.6)",
+                "rgba(255, 159, 64, 0.6)",
+                "rgba(54, 162, 235, 0.6)",
+              ],
+              borderColor: [
+                "rgba(75 , 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+                "rgba(54, 162, 235, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching dashboard data:", error.message);
       });
   }, []);
+
 
   // Fetch users
   useEffect(() => {
