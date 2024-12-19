@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProjectCard from "./pages/projectPage";
 import SignupPage from "./pages/SignUpPageY";
 import LoginPage from "./pages/LogInPageY";
+import ProfileVisitorPage from "./pages/profileVisitorPage";
 
 function App() {
   const [data, setData] = useState([]);
@@ -32,6 +33,7 @@ function App() {
           {/* <Route path="/profile/" element={<ProfilePage />} /> */}
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/signIn" element={<LoginPage />} />
+          
           {
             //profile
             data.map((d, i) => (
@@ -50,6 +52,17 @@ function App() {
                 key={i}
                 path={`/ProjectCard/${d.Id}`}
                 element={<ProjectCard Id={d.Id} />}
+              />
+            ))
+          }
+
+{
+            //tu visites profile abd e5er
+            data.map((d, i) => (
+              <Route
+                key={i}
+                path={`/ProfileVisitorPage/${d.Id}`}
+                element={<ProfileVisitorPage Id={d.Id} />}
               />
             ))
           }

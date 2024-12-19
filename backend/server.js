@@ -18,12 +18,18 @@ const portfolioRoutes = require("./routes/portfolioRoute");
 app.use("/portfolio", portfolioRoutes);
 
 const signRoutes = require("./routes/signRoute");
-app.use("/signup", signRoutes);
-app.use("/login", signRoutes);
+app.use("/api", signRoutes);
+
+const applicationsRoutes = require("./routes/applicationRoute");
+app.use("/applications", applicationsRoutes);
+
 
 app.get("/", (req, res) => {
   return res.json("From backend side");
 });
+
+
+
 
 // Start server
 app.listen(8081, () => {

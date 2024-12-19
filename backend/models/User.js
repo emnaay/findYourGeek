@@ -12,6 +12,7 @@ const User = {
     const sql = "SELECT * FROM users WHERE Id = ?";
     db.query(sql, [id], callback);
   },
+ 
 
   // Create a new user
   create: (userData, callback) => {

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import logo from "../img/FYG_Logos.png";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link for routing
-
+import { useNavigate } from "react-router-dom";
 const title = {
   color: "#202258",
 
@@ -31,6 +31,8 @@ const signupButtonStyle = {
 };
 
 function Signup() {
+      const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -52,9 +54,10 @@ function Signup() {
     // Proceed with form submission logic
     console.log(formData);
     axios
-      .post("http://localhost:8081/signup", formData)
+      .post("http://localhost:8081/api/signup", formData)
       .then((response) => alert("Sign-Up Successful!"))
       .catch((error) => console.error("Error during sign-up:", error));
+      navigate(`/signIn`);
   };
 
   const handleInputChange = (e) => {
