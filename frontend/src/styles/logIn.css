@@ -1,17 +1,18 @@
+  /* logIn.css */
 .logintitle {
     color: #202258;
     font-weight: 1000;
     font-family: "Alfa Slab One", serif;
     font-size: 40px;
     font-style: normal;
-  }
-  
-  .requirement {
+}
+
+.requirement {
     color: #929292;
     font-size: 16px;
-  }
-  
-  .loginButtonStyle {
+}
+
+.loginButtonStyle {
     border: 3px solid #202258;
     padding: 12px;
     background-color: white;
@@ -21,37 +22,41 @@
     border-radius: 10px;
     font-size: 18px;
     width: auto;
-  }
-  
-  .vh-100{
-      background-color: white;
-  }
-  
-  .logincard{
-      border-radius: 1rem;
-      border: 4px solid #202258;
-  }
-  
-  .login_image{
-      width:"100px ";
-  }
-  
-  .signin_wrapper{
-      letter-spacing: 1px;
-  }
-  
-  .form-control{
-      border: 3px solid #93bfb7 ;
-  }
-  
-  .img-fluid{
-      border-radius: 1rem 0 0 1rem;
-  }
-  
-  .accountfieldWrapper{
-      color: #393f81;
-  }
-  
-  .sign-up{
-      color: #393f81;
-  }
+}
+
+.vh-100 {
+    background-color: white;
+}
+
+.logincard {
+    border-radius: 1rem;
+    border: 4px solid #202258 !important;
+}
+
+.login_image {
+    width: 100px;
+}
+
+.signin_wrapper {
+    letter-spacing: 1px;
+}
+
+.form-control {
+    border: 3px solid #93bfb7;
+}
+
+.img-fluid {
+    border-radius: 1rem 0 0 1rem;
+}
+
+.accountfieldWrapper {
+    color: #393f81;
+}
+
+.sign-up {
+    color: #393f81;
+}
+
+.container.py-5.h-100 {
+    max-width: 1200px;
+}
