@@ -23,7 +23,7 @@ function Signup() {
     }
 
     axios
-      .post("http://localhost:8081/signup", formData)
+      .post("http://localhost:8081/api/signup", formData)
       .then((response) => alert("Sign-Up Successful!"))
       .catch((error) => console.error("Error during sign-up:", error));
   };

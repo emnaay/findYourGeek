@@ -101,7 +101,7 @@ const ProjectCard = ({ Id }) => {
           <div
             key={i}
             style={{
-              flex: "1 1 calc(50% - 20px)", 
+              flex: "0 0 calc(50% - 20px)", 
               maxWidth: "calc(50% - 20px)", 
               boxSizing: "border-box",
               display: "flex",
