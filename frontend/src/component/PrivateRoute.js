@@ -1,4 +1,4 @@
-/*import React from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 import { UserRole} from "../UserRole";
 function PrivateRoute({ children, allowedRoles }) {
@@ -15,4 +15,4 @@ else {
 return <Navigate to="/signIn" />; // Adjust the redirect route as needed
 }
 }
-export default PrivateRoute;**/
+export default PrivateRoute;

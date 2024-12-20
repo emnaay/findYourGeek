@@ -1,4 +1,4 @@
-/*const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const isAuth = async (req, res, next) => {
 try {
@@ -17,4 +17,4 @@ res.status(500).json({ msg: "Server error" });
 }
 }
 };
-module.exports = isAuth;*/
+module.exports = isAuth;

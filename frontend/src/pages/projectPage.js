@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //import '../styles/projectCardStyle.css';
 import "../styles/Card.css";
-import NavigationBar from "../component/NavigationBarY";
+import NavigationBar from "../component/NavigationBarIn";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';

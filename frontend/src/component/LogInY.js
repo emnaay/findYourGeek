@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios"; // make sure axios is imported
+import axios from "axios";
 import logo from "../img/FYG_Logos.png";
-import { Link } from "react-router-dom"; // Import Link for routing
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const title = {
@@ -30,35 +30,38 @@ const loginButtonStyle = {
 };
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    
-    const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  const navigate = useNavigate();
 
-      try {
-          const response = await axios.post('http://localhost:8081/api/signin', {
-              email,
-              password,
-          });
-          console.log("SAHITEEK" );
-          console.log(response.data.user);
-          console.log("id",response.data.user.Id);
-          setMessage(response.data.message);
-          
-          navigate(`/ProjectCard/${response.data.user.Id}`);
-      } catch (error) {
-        console.log(error)
-        alert(error.response.data.message);
-         
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8081/api/signin', {
+        email,
+        password,
+      });
+
+      console.log(response.data);
+
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+      console.log("ena tsajalt");
+
+      if (response.data.user.role === 'user') {
+        console.log("user id ", response.data.user.id)
+        navigate(`/ProjectCard/${response.data.user.id}`);
+      } else {
+        navigate('/dashboard');
       }
+    } catch (error) {
+      console.log(error);
+      alert(error.response.data.message);
+    }
   };
-
-
-
 
   return (
     <section className="vh-100" style={{ backgroundColor: "white" }}>
@@ -96,11 +99,8 @@ function Login() {
                       <div className="form-outline mb-4">
                         <input
                           type="text"
-                          // name="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          // value={formData.email}
-                          // onChange={handleInputChange}
                           required
                           className="form-control form-control-lg"
                           style={{ border: "3px solid #93bfb7" }}
@@ -117,10 +117,7 @@ function Login() {
                       <div className="form-outline mb-4">
                         <input
                           type="password"
-                          name="password"
                           onChange={(e) => setPassword(e.target.value)}
-                          // value={formData.password}
-                          // onChange={handleInputChange}
                           required
                           className="form-control form-control-lg"
                           style={{ border: "3px solid #93bfb7" }}
