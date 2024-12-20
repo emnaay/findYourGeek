@@ -9,7 +9,7 @@ app.use(cors());
 
 // Import and use routes
 const messageRouter = require("./routes/messageRoutes");
-app.use("/", messageRouter);
+app.use("/messages", messageRouter);
 
 const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use("/dashboard", dashboardRoutes);

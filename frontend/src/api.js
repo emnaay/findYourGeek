@@ -51,10 +51,10 @@ export const sendMessage = async (from, to, message) => {
   }
 };
 
-export const getMessagesForReceiver = async (receiverId) => {
+export const getMessagesForReceiver = async (receiver_id) => {
   try {
     const response = await axios.get(
-      `${API_URL}/messages/receiver/${receiverId}`
+      `${API_URL}/messages/get/${receiver_id}`
     );
     return response.data;
   } catch (error) {
