@@ -7,6 +7,16 @@
   height: 100% !important; /* Ensure full height */
 }
 
+
+
+.sizecard {
+  border: 15px solid #93bfb7 !important;
+  border-radius: 25px;
+  flex-grow: 1; /* Allow the card to grow and take available space */
+  width: 55% !important; /* Ensure full width */
+  height: 100% !important; /* Ensure full height */
+}
+
 /* Card Body */
 .mdb-card-body {
   flex-grow: 1; /* Allow the card to grow and take available space */
@@ -118,4 +128,52 @@ height: 100%;
 .py-5 {
 max-width: 500px;
 height: 500px;
+}
+
+.d-flex.flex-start.align-items-center {
+  width: 100%;
+}
+.head {
+  width: 100% !important;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .sizecard {
+    width: calc(50% - 10px); /* Slightly smaller gap for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .sizecard {
+    width: calc(100% - 20px); /* Full width for small screens */
+  }
+
+  .mdb-card {
+    margin: 10px auto; /* Center the card vertically */
+  }
+}
+
+@media (max-width: 576px) {
+  .sizecard {
+    width: calc(100% - 10px); /* Full width with tighter margins */
+  }
+
+  .mdb-card-body {
+    padding: 0.5rem; /* Reduce padding for small screens */
+  }
+
+  .card-header {
+    font-size: 1rem; /* Smaller text size for headers */
+  }
+
+  .card-description {
+    font-size: 0.875rem; /* Smaller text size for descriptions */
+  }
+
+  .question-button {
+    font-size: 0.875rem; /* Adjust font size for buttons */
+    padding: 8px; /* Smaller padding */
+  }
 }

@@ -19,3 +19,26 @@
     text-align: center;
   }
   
+/* Responsive Adjustments */
+@media screen and (max-width: 1080px) {
+  .overlay-text {
+    font-size: 48px; /* Adjusts for smaller screens */
+    white-space: normal; /* Allows wrapping for smaller devices */
+  }
+  
+  .subtext {
+    font-size: 18px;
+    top: 50%; /* Adjust position for readability */
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .overlay-text {
+    font-size: 36px; /* Smaller font size for compact screens */
+  }
+  
+  .subtext {
+    font-size: 16px;
+    top: 52%; /* Further adjust position */
+  }
+}

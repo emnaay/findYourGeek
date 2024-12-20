@@ -16,10 +16,7 @@
     margin-top: -30px;
   }
   
-  /* .portfoliocard_img {
-    height: 150px;
-    width: 100%;
-  } */
+
   
   .prevwork_cont {
     display: flex;
@@ -65,3 +62,47 @@
       color: black;
       width: 10%;
   }
+
+  /* Responsive Design */
+@media screen and (max-width: 768px) {
+  .profilepagecontainer {
+    flex-direction: column; /* Stacks content vertically */
+    align-items: center;
+  }
+
+  .profilecardcontainer {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
+  .prevwork_cont {
+    flex-direction: column; /* Stacks work items vertically */
+  }
+
+  .portfolio_header {
+    font-size: 1.2rem; /* Reduce font size for smaller screens */
+  }
+
+  .proposed_project_body {
+    flex-direction: column; /* Stacks items vertically */
+  }
+
+  .cardportfolio {
+    max-width: 100%; /* Full width on smaller screens */
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .portfolio_header {
+    font-size: 1rem; /* Further reduce font size */
+  }
+
+  .viewproj_button {
+    font-size: 0.9rem; /* Smaller buttons */
+    padding: 8px 15px;
+  }
+
+  .proposed_project_button {
+    font-size: 1rem; /* Adjust button size */
+  }
+}

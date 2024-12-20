@@ -68,3 +68,54 @@ a.question-button:hover {
 }
 
 
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .overlay-text {
+    font-size: 2.5rem; /* Adjust font size for medium screens */
+    top: 50%; /* Adjust positioning */
+  }
+
+  a.question-button {
+    font-size: 0.9rem; /* Adjust button size */
+    padding: 8px 15px; /* Reduce padding */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .overlay-text {
+    font-size: 2rem; /* Smaller font for smaller screens */
+    left: 50%; /* Center horizontally */
+  }
+
+  .background-image {
+    height: 80vh; /* Adjust height for smaller screens */
+  }
+
+  a.question-button {
+    font-size: 0.8rem; /* Further reduce button size */
+    padding: 6px 10px;
+  }
+
+  .welcomepagetitle {
+    font-size: 2.5rem; /* Reduce title size */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .overlay-text {
+    font-size: 1.8rem; /* Further reduce for mobile devices */
+  }
+
+  .background-image {
+    height: 70vh; /* Adjust height for mobile devices */
+  }
+
+  a.question-button {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+
+  .welcomepagetitle {
+    font-size: 2rem; /* Reduce title size further for mobile */
+  }
+}
