@@ -18,14 +18,12 @@ const getProjectById = (req, res) => {
 const postNewProject = (req, res) => {
   const projectData = req.body;
 
-  // Check if project name is already used
   Project.checkProjectName(projectData.projectName, (err, data) => {
     if (err) return res.status(500).json("ERROR");
     if (data.length > 0) {
       return res.status(400).json({ status: "Project Title already used" });
     }
 
-    // Add the new project if the name is unique
     Project.create(projectData, (err, result) => {
       if (err) return res.status(500).json("ERROR");
       return res.json({

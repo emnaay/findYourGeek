@@ -14,7 +14,7 @@ function MyVerticallyCenteredModal({ projectID, ...props }) {
 
   useEffect(() => {
     if (projectID) {
-      fetch(`http://localhost:8081/applications/${projectID}`)
+      fetch(`http://localhost:8081/application/${projectID}`)
         .then(res => res.json())
         .then(data => setData(data))
         .catch(err => console.log(err));
@@ -127,14 +127,12 @@ function ProjectProposed({ userID }) {
       ))}
       <AddProjectButton userID={userID} />
 
-      {/* Proposition Modal */}
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         projectID={selectedProjectId}
       />
 
-      {/* Delete Confirmation Modal */}
       <Modal
         show={deleteModalShow}
         onHide={() => setDeleteModalShow(false)}

@@ -9,12 +9,11 @@ a.question-button.nav-link {
   border-radius: 25px;
 }
 
-/* Hover effect */
+
 a.question-button:hover {
-  background-color: #202258; /* Background color on hover */
-  color: #ffffff; /* Text color on hover */
+  background-color: #202258; 
+  color: #ffffff;
+
+
+
 }
-
-
-
-/* gome page css */

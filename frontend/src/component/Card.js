@@ -1,13 +1,13 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCol,
+    MDBCard,
+    MDBCardBody,
+    MDBCardImage,
+    MDBCol,
 } from "mdb-react-ui-kit";
+import "../styles/Card.css";
 import React from "react";
-import '../styles/Card.css';
 
 const Card = ({ card }) => {
   return (

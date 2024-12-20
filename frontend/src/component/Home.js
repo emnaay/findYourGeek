@@ -2,8 +2,6 @@ import React from "react";
 import homepageImage from "../img/homepage.png";
 import "../styles/welcomePage.css";
 import "../styles/homePage.css";
-// import '../App.css'; // Adjust the import based on your file structure
-
 import "../styles/welcomePage.css";
 
 

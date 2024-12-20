@@ -1,4 +1,4 @@
-/*const isAutho = (allowedRoles) => {
+const isAutho = (allowedRoles) => {
     return (req, res, next) => {
     if (req.user && allowedRoles.includes(req.user.role)) {
     next();
@@ -8,4 +8,4 @@
     }
     };
     };
-module.exports = isAutho;*/
+module.exports = isAutho;

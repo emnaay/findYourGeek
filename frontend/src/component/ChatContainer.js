@@ -1,33 +1,37 @@
 import React, { useRef, useState, useEffect } from "react";
 import ChatInput from "./chatInput";
-import { getMessages, sendMessage } from "../api"; // Import API functions
+import { getMessages, sendMessage } from "../api"; 
 import "../styles/chatContainer.css";
 
-export default function ChatContainer({ currentChatId, userId }) {
+export default function ChatContainer({ selectedContact, userID }) {
   const scrollRef = useRef();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  console.log("selectedContact", selectedContact);
+  console.log("userId", userID);
   console.log("MESSAGES", messages);
-  const senderId = "rahma";
-  const receiverId = "rahmaa";
-  useEffect(() => {
-    const fetchMessages = async () => {
-      const data = await getMessages(senderId, receiverId);
-      if (data) {
-        console.log(data);
-        setMessages(data);
-      } else {
-        console.error("Failed to fetch messages:", data.error);
+  const senderId = userID;
+  const receiverId = selectedContact;
+  console.log("sender:", senderId);
+  console.log("receiver:", receiverId);
+
+    useEffect(() => {
+      const fetchMessages = async () => {
+        const data = await getMessages(senderId, receiverId);
+        if (data && Array.isArray(data)) {
+          console.log("Messages fetched:", data);
+          setMessages(data);
+        } else {
+          console.error("Failed to fetch messages: No data returned or incorrect format", );
+        }
+      };
+    
+      if (senderId && receiverId) {
+        fetchMessages(); 
       }
-    };
-    if (senderId) {
-      fetchMessages(); // Ensure fetchMessages is called
-    }
-  }, []);
-  console.log(messages);
+    }, [senderId, receiverId]);
 
   useEffect(() => {
-    // Scroll to the latest message
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -35,11 +39,11 @@ export default function ChatContainer({ currentChatId, userId }) {
 
   const handleSendMsg = async (message) => {
     if (message) {
-      const data = await sendMessage(senderId, receiverId, message); // Sending userId as 'from' and currentChatId as 'to'
-      if (data) {
+      const data = await sendMessage(senderId, receiverId, message);
+            if (data) {
         setMessages((prevMessages) => [
           ...prevMessages,
-          { fromSelf: true, message },
+          { message, timestamp: new Date().toISOString() },
         ]);
         setNewMessage("");
       } else {
@@ -56,16 +60,15 @@ export default function ChatContainer({ currentChatId, userId }) {
             <img src="./img/loader.gif" alt="User Avatar" />
           </div>
           <div className="username">
-            <h3>{currentChatId}</h3>
+            <h3>{selectedContact}</h3>
           </div>
         </div>
       </div>
+
       <div className="chat-messages">
         {messages && messages.map((message, index) => (
           <div ref={scrollRef} key={index}>
-            <div
-              className={`message ${message.fromSelf ? "sended" : "recieved"}`}
-            >
+            <div className={`message ${message.sender_id === userID ? "sended" : "recieved"}`}>
               <div className="content">
                 <p>{message.message}</p>
               </div>
@@ -73,7 +76,11 @@ export default function ChatContainer({ currentChatId, userId }) {
           </div>
         ))}
       </div>
-      <ChatInput handleSendMsg={handleSendMsg} />
+
+     
+      <div className="chat-input-container">
+        <ChatInput handleSendMsg={handleSendMsg} />
+      </div>
     </div>
   );
 }

@@ -2,12 +2,15 @@ import NavigationBar from "../component/NavigationBarIn";
 import ProfileCard from "../component/profileCard";
 import ProfileProject from "../component/profileProject";
 import "../styles/profilePage.css";
+import { useLocation } from "react-router-dom";
 
-function ProfilePage({ Id }) {
-  console.log(Id);
+
+function ProfilePage( {Id} ) {
+  const token = localStorage.getItem("token");
+  console.log(token);
   return (
     <div>
-      <NavigationBar />
+      <NavigationBar Id={Id} />
       <div className="profilepagecontainer" >
         <div className="profilecardcontainer">
           {" "}

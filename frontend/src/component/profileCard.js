@@ -11,17 +11,25 @@ function ProfileCard({ Id }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
 
-  // Fetch user data on component mount or when Id changes
   useEffect(() => {
-    fetch(`http://localhost:8081/users/${Id}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem('token'); 
+        const headers = token 
+          ? { Authorization: `Bearer ${token}` } 
+          : {};
+  
+        const response = await fetch(`http://localhost:8081/users/${Id}`, {
+          headers,
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return res.json();
-      })
-      .then((data) => {
+  
+        const data = await response.json();
         console.log("Fetched Data:", data);
+  
         setData(data);
         setFormData({
           userName: data.userName || "",
@@ -30,22 +38,24 @@ function ProfileCard({ Id }) {
           phone_number: data.phone_number || "",
           rank: data.rank || "",
         });
-      })
-      .catch((err) => console.error("Fetch Error:", err));
+      } catch (err) {
+        console.error("Fetch Error:", err.message);
+      }
+    };
+  
+    fetchUserData();
   }, [Id]);
+  
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Toggle editing mode
   const handleEditClick = () => {
     setIsEditing(!isEditing);
   };
 
-  // Save updated data to the backend
   const handleSave = () => {
     fetch(`http://localhost:8081/users/${Id}`, {
       method: "PUT",
@@ -62,7 +72,7 @@ function ProfileCard({ Id }) {
       })
       .then((updatedData) => {
         console.log("Updated Data:", updatedData);
-        setData(updatedData); // Update local state with updated data
+        setData(updatedData); 
         setFormData({
           userName: updatedData.userName || "",
           description: updatedData.description || "",
@@ -70,12 +80,11 @@ function ProfileCard({ Id }) {
           phone_number: updatedData.phone_number || "",
           rank: updatedData.rank || "",
         });
-        setIsEditing(false); // Exit editing mode
+        setIsEditing(false); 
       })
       .catch((err) => console.error("Update Error:", err));
   };
 
-  // Render loading state if data is null
   if (!data) {
     return <div>Loading...</div>;
   }

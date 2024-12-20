@@ -1,7 +1,6 @@
 const db = require("../database/db");
 
 const Application = {
-  // Get all users
   getAll: (callback) => {
     const sql =`
           SELECT 
@@ -38,7 +37,6 @@ const Application = {
   },
 
 
-// Create a new application
 create: (applicationData, callback) => {
   const sql = "INSERT INTO applications (userID, projectID, price_proposed, application_letter) VALUES (?, ?, ? , ? )";
   

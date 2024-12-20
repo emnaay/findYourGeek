@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/signOut.css"; // Importing the CSS file
+import "../styles/signOut.css"; 
 
 export default function SignOutButton() {
-  const [showPopup, setShowPopup] = useState(false); // Control popup visibility
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    localStorage.removeItem("token"); // Remove the token from local storage
-    navigate("/"); // Navigate to the home page or login page
+    localStorage.removeItem("token"); 
+    navigate("/"); 
   };
 
   return (
     <>
       <div className="popup-overlay">
         {" "}
-        {/* Popup overlay */}
         <div className="popup-container">
           {" "}
           {/* Popup container */}

@@ -166,9 +166,7 @@
 }
 
 /* Avoid affecting the default Material UI table styles */
-.MuiTable-root {
-    /* Default table styles from Material UI should remain unaffected */
-}
+
 
 /* Custom styles for the icons inside the table */
 .search-icon {
@@ -266,4 +264,48 @@
     font-weight: bold;
   }
 
+  /* Responsive Styles */
+@media screen and (max-width: 1080px) {
+    .cards-section {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   
+    .card {
+      width: 45%;
+    }
+  
+    .chart-container,
+    .search-section {
+      width: 100%;
+    }
+  
+    .table-container {
+      overflow-x: auto;
+    }
+  }
+  
+  @media screen and (max-width: 720px) {
+    .dashboard-header {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+  
+    .card {
+      width: 90%;
+      margin-bottom: 20px;
+    }
+  
+    .search-input {
+      height: 40px;
+      font-size: 14px;
+    }
+  
+    .pagination-container {
+      justify-content: center;
+    }
+  
+    .dialog-title {
+      font-size: 1.2rem;
+    }
+  }

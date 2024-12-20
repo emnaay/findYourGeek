@@ -10,13 +10,12 @@ import Chat from './ChatContainer';
 import "../styles/profilePage.css";
 import Contacts from  "../component/Contacts";
 
-// Define your color palette
 const colors = {
     primary: '#13334D',
     secondary: '#387373',
     backgroundColor: '#E4F2E7',
     textColor: '#97A6A0',
-    tabBorder: '#93bfb7', // use a custom color for border if needed
+    tabBorder: '#93bfb7', 
 };
 
 function ProfileNav({userID}) {
@@ -36,14 +35,14 @@ function ProfileNav({userID}) {
                         aria-label="full width tabs example"
                         sx={{
                             '.MuiTabs-indicator': {
-                                backgroundColor: colors.secondary, // Change the indicator (underline) color
+                                backgroundColor: colors.secondary, 
                             },
                         }}
                     >
                         <Tab label="Portfolio" value="1" sx={{
-                            color: colors.primary, // Set default color
+                            color: colors.primary,
                             '&.Mui-selected': {
-                                color: colors.secondary, // Set selected color
+                                color: colors.secondary, 
                                 fontWeight: 'bold',
                             },
                         }} />
@@ -65,7 +64,7 @@ function ProfileNav({userID}) {
                 </Box>
                 <TabPanel value="1" className='profile_nav_field' > <Portfolio userID ={userID} /> </TabPanel>
                 <TabPanel value="2" className='profile_nav_field' > <ProjectProposed userID ={userID} /> </TabPanel>
-                <TabPanel value="3" className='profile_nav_field' > <Contacts /> </TabPanel>
+                <TabPanel value="3" className='profile_nav_field' > <Contacts userID ={userID} /> </TabPanel>
             </TabContext>
         </Box>
     );

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import "../styles/chatContacts.css";
 import ChatContainer from "../component/ChatContainer.js";
-import { getContacts } from "../api"; // Import API function
+import { getContacts } from "../api"; 
 
-const Contacts = () => {
+const Contacts = ({ userID }) => {
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
 
-  const sender_id = "rahma"; // Example sender ID
+  const user_id = userID;
   const staticCurrentUser = {
     username: "Current User",
   };
@@ -16,11 +16,11 @@ const Contacts = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        if (sender_id) {
-          const contactsData = await getContacts(sender_id); // Pass `sender_id` directly
+        if (user_id) {
+          const contactsData = await getContacts(user_id);
           if (contactsData?.success) {
             console.log("Fetched contacts:", contactsData.contacts);
-            setContacts(contactsData.contacts); // Update contacts state
+            setContacts(contactsData.contacts);
           } else {
             console.error("Failed to fetch contacts");
           }
@@ -31,16 +31,21 @@ const Contacts = () => {
     };
 
     fetchContacts();
-  }, [sender_id]);
+  }, [user_id]);
 
   const handleContactClick = (contact) => {
-    setSelectedContact(contact); // Set the selected contact
+    console.log('Selected contact:', contact); 
+    setSelectedContact(contact);
   };
+
+  const getUserName = (contact) => contact.contact_name || "Unknown User";
 
   return (
     <Container>
       {selectedContact ? (
-        <ChatContainer selectedContact={selectedContact} />
+          <ChatContainer selectedContact={selectedContact.contact_id} userID={userID} />
+
+
       ) : (
         <>
           <div className="brand">
@@ -50,15 +55,13 @@ const Contacts = () => {
             {contacts.length > 0 ? (
               contacts.map((contact) => (
                 <div
-                  key={contact._id}
+                  key={contact.contact_id}
                   className="contact"
                   onClick={() => handleContactClick(contact)}
                 >
-                  <div className="avatar">
-                    {/* Avatar Placeholder */}
-                  </div>
+                  <div className="avatar"></div>
                   <div className="username">
-                    <h3>{contact.user_id}</h3>
+                    <h3>{getUserName(contact)}</h3>
                   </div>
                 </div>
               ))
@@ -78,9 +81,6 @@ const Contacts = () => {
 };
 
 export default Contacts;
-
-
-
 
 const Container = styled.div`
   height: 100vh;
@@ -111,7 +111,7 @@ const Container = styled.div`
     padding: 1rem;
 
     .contact {
-      background-color: #e4f2e7 ;
+      background-color: #e4f2e7;
       min-height: 4rem;
       width: 85%;
       border-radius: 0.5rem;
@@ -148,13 +148,4 @@ const Container = styled.div`
       font-weight: bold;
     }
   }
-
-  > div:first-child {
-    flex: 1;
-    width: 100%;
-  }
 `;
-
-//display: flex;
-//justify-content: center;
-    //align-items: center;

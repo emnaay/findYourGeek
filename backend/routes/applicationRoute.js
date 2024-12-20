@@ -4,8 +4,7 @@ const applicationsRoutes = express.Router();
 
 const {  getApplications, getApplicationByProjectId, createApplication} = require("../controllers/applicationController");
 
-// Routes for user operations
-applicationsRoutes.get("/", getApplications); // Get all users
+applicationsRoutes.get("/", getApplications); 
 applicationsRoutes.get("/:projectID", getApplicationByProjectId );
 
 applicationsRoutes.post("/", createApplication);

@@ -11,6 +11,8 @@ import Contacts from "./component/Contacts"
 import ProfileVisitorPage from "./pages/profileVisitorPage";
 import Dashboard from "./pages/DashboardPage";
 import SignOutButton from "./component/signOut";
+import PrivateRoute from "./component/PrivateRoute"
+
 function App() {
   const [data, setData] = useState([]);
 
@@ -19,10 +21,12 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setData(data); // Update state with fetched data
+        setData(data); 
       })
       .catch((err) => console.log(err));
   }, []);
+
+console.log('DARAAAA',data);
 
   return (
     <div>
@@ -30,9 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/signUp" element={<SignupPage />} />
-          {/* <Route path="/signup" element={<SignUpLoginPage />} /> */}
-          {/* <Route path="/ProjectCard" element={<ProjectCard />} /> */}
-          { <Route path="/profile/:id" element={<ProfilePage />} /> }
+         
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/signin" element={<LoginPage />} />
           <Route path="/signout" element={<SignOutButton />} />
@@ -40,7 +42,7 @@ function App() {
           
           <Route path="/signIn" element={<LoginPage />} />
 
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<PrivateRoute allowedRoles={['admin']}><Dashboard /></PrivateRoute>} />
           {
             data.map((d, i) => (
               <Route
@@ -52,7 +54,6 @@ function App() {
           }
 
           {
-            //el page loula li bch todherlou ki yconecti feha des proj
             data.map((d, i) => (
               <Route
                 key={i}
@@ -63,7 +64,6 @@ function App() {
           }
 
 {
-            //tu visites profile abd e5er
             data.map((d, i) => (
               <Route
                 key={i}
@@ -74,8 +74,7 @@ function App() {
           }
         </Routes>
       </Router>
-      {/* <SignUpLoginPage/> */}
-      {/* <ProfilePage/> */}
+      
     </div>
   );
 }

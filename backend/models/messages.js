@@ -1,7 +1,6 @@
 const db = require("../database/db");
 
 const Message = {
-    // Get all messages between two users
     getMessages: (from, to, callback) => {
         const sql = `
             SELECT sender_id, message, timestamp 
@@ -13,7 +12,6 @@ const Message = {
         db.query(sql, [from, to, to, from], callback);
     },
 
-    // Add a new message
     addMessage: (from, to, message, callback) => {
         const sql = `
             INSERT INTO messages (sender_id, receiver_id, message, timestamp)
@@ -22,7 +20,6 @@ const Message = {
         db.query(sql, [from, to, message], callback);
     },
 
-    // Get all messages for a specific receiver
     getMessagesForReceiver: (receiverId, callback) => {
         const sql = `
             SELECT * 

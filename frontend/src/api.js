@@ -1,33 +1,31 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8081"; // Backend URL
+const API_URL = "http://localhost:8081"; 
 
 export const getContacts = async (user_id) => {
   try {
     const response = await axios.post(`http://localhost:8081/contacts/get`, {
-      user_id: user_id, // Send `user_id` in the body
+      user_id: user_id, 
     });
 
-    return response.data; // Return the data for further use
+    return response.data; 
   } catch (error) {
     console.error("Error fetching contacts:", error);
     return null;
   }
 };
 
-export const getMessages = async (from, to) => {
+export const getMessages = async (receiver_id, sender_id) => {
   try {
-    const response = await axios.post(`http://localhost:8081/messages/get`, {
-      from: from,
-      to: to,  // Send `from` and `to` in the body, not as query parameters.
-    });
-
-    return response.data;  // Return the data for further use
+    const response = await axios.get(`http://localhost:8081/messages/get/${receiver_id}/${sender_id}`);
+    
+    return response.data;  
   } catch (error) {
     console.error("Error fetching messages:", error);
     return null;
   }
 };
+
    
 export const sendMessage = async (from, to, message) => {
   try {
@@ -51,10 +49,10 @@ export const sendMessage = async (from, to, message) => {
   }
 };
 
-export const getMessagesForReceiver = async (receiverId) => {
+export const getMessagesForReceiver = async (receiver_id) => {
   try {
     const response = await axios.get(
-      `${API_URL}/messages/receiver/${receiverId}`
+      `${API_URL}/messages/get/${receiver_id}`
     );
     return response.data;
   } catch (error) {

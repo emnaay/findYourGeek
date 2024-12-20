@@ -1,4 +1,4 @@
-/*import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 export function UserRole() {
 const token = localStorage.getItem("token");
 if (token) {
@@ -11,4 +11,4 @@ console.error("Token decoding error:", error);
 }
 }
 return null;
-}*/
+}

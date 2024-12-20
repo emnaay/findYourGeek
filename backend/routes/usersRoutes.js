@@ -5,14 +5,16 @@ const usersRoutes = express.Router();
 const { getUsers, getUserById, loginUser, createUser, updateUser, deleteUser } = require("../controllers/usersControllers");
 
 const { searchUsers } = require("../controllers/usersControllers");
-// Routes for user operations
-usersRoutes.get("/search", searchUsers);// Add this route for searching users
+const isAuth = require("../middleware/isAuth")
+const isAutho=require('../middleware/isAutho')
 
-usersRoutes.get("/", getUsers); // Get all users
-usersRoutes.get("/:Id", getUserById); // Get a user by ID
+usersRoutes.get("/search", searchUsers);
 
-usersRoutes.post("/", createUser); // Create a new user
-usersRoutes.put("/:Id", updateUser); // Update a user by ID
-usersRoutes.delete("/:Id", deleteUser); // Delete a user by ID
+usersRoutes.get("/", getUsers); 
+usersRoutes.get("/:Id", isAuth,isAutho(['user']), getUserById); 
+
+usersRoutes.post("/", createUser); 
+usersRoutes.put("/:Id", updateUser);
+usersRoutes.delete("/:Id", isAuth,isAutho(['admin']), deleteUser); 
 
 module.exports = usersRoutes;

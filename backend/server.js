@@ -7,9 +7,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Import and use routes
 const messageRouter = require("./routes/messageRoutes");
-app.use("/", messageRouter);
+app.use("/messages", messageRouter);
+
+const applicationRoutes = require("./routes/applicationRoute");
+app.use("/application", applicationRoutes);
 
 const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use("/dashboard", dashboardRoutes);
@@ -29,12 +31,10 @@ app.use("/contacts", contactsRoutes);
 const portfolioRouter = require("./routes/portfolioRoute");
 app.use("/portfolio", portfolioRouter);
 
-// Root route
 app.get("/", (req, res) => {
   return res.json("From backend side");
 });
 
-// DELETE route for projects
 app.delete("/projects/:projectID", (req, res) => {
   const projectId = req.params.projectID;
 
@@ -49,7 +49,6 @@ app.delete("/projects/:projectID", (req, res) => {
   });
 });
 
-// Start server
 app.listen(8081, () => {
   console.log("Server is listening on port 8081");
 });

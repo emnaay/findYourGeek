@@ -1,4 +1,6 @@
 const db = require("../database/db");
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 const postSignUp = (req, res) => {
   const { username, password, email } = req.body;
@@ -21,22 +23,8 @@ const postSignUp = (req, res) => {
   });
 };
 
-// const postLogIn = (req, res) => {
-//   const { email, password } = req.body;
-// console.log("leeeeee");
-//   const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-//   db.query(sql, [email, password], (err, data) => {
-//       if (err) {
-//           console.error("SQL Error:", err); // Log the error
-//           return res.status(500).json("ERROR");
-//       }
-//       if (data.length > 0) {
-//           return res.json({ status: "Login Successful", user: data[0] });
-//       } else {
-//           return res.json({ status: "Invalid credentials" });
-//       }
-//   });
-// };
+
+
 
 const postSignIn = (req, res) => {
   const { email, password } = req.body;
@@ -50,17 +38,28 @@ const postSignIn = (req, res) => {
   const query = "SELECT * FROM users WHERE email = ? AND password = ?";
   console.log("Executing query:", query, email, password);
 
-  // Using the query method from mysql
   db.query(query, [email, password], (error, results) => {
     if (error) {
       console.error("Error during sign-in:", error);
       return res.status(500).json({ message: "Server error" });
     }
 
-    console.log("AAAAAAAAAAAAAA Query results:", results);
+    console.log("Query results:", results);
 
     if (results.length > 0) {
-      return res.status(200).json({ message: "Login successful", user: results[0] });
+      const user = results[0];
+
+      const token = jwt.sign(
+        { id: user.Id, role: user.role },
+        process.env.JWT_SECRET, 
+        { expiresIn: "1h" } 
+      );
+
+      return res.status(200).json({
+        message: "Login successful",
+        user: { id: user.Id, email: user.email, role: user.role },
+        token,
+      });
     } else {
       return res.status(401).json({ message: "Invalid email or password" });
     }

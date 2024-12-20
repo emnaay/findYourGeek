@@ -1,4 +1,4 @@
-/*import React from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 import { UserRole} from "../UserRole";
 function PrivateRoute({ children, allowedRoles }) {
@@ -11,8 +11,7 @@ return (
 </div>)
 }
 else {
-// No valid token or role, redirect to the login page
-return <Navigate to="/signIn" />; // Adjust the redirect route as needed
+return <Navigate to="/signIn" />; 
 }
 }
-export default PrivateRoute;**/
+export default PrivateRoute;

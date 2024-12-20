@@ -1,38 +1,10 @@
-import React, { useState } from "react";
-// import "../App.css";
-import logo from "../img/FYG_Logos.png";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Import Link for routing
-import { useNavigate } from "react-router-dom";
-const title = {
-  color: "#202258",
-
-  fontWeight: 1000,
-  fontFamily: "Alfa Slab One, serif",
-  fontSize: "40px",
-  fontStyle: "normal",
-};
-
-const requirement = {
-  color: "#929292",
-  fontSize: "16px",
-};
-
-const signupButtonStyle = {
-  border: "3px solid #202258",
-  padding: "12px",
-  backgroundColor: "white",
-  fontFamily: '"Open Sauce One", sans-serif',
-  fontWeight: "bold",
-  color: "#202258",
-  borderRadius: "10px",
-  fontSize: "18px",
-  width: "auto",
-};
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../img/FYG_Logos.png";
+import "../styles/signUp.css";
 
 function Signup() {
-      const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -45,19 +17,15 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
-    // Proceed with form submission logic
-    console.log(formData);
     axios
       .post("http://localhost:8081/api/signup", formData)
       .then((response) => alert("Sign-Up Successful!"))
       .catch((error) => console.error("Error during sign-up:", error));
-      navigate(`/signIn`);
   };
 
   const handleInputChange = (e) => {
@@ -66,11 +34,11 @@ function Signup() {
   };
 
   return (
-    <section className="global_container">
+    <section className="vh-100">
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-xl-10">
-            <div className="signup_card">
+          <div className="card signupCard">
               <div className="row g-0">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                   <img
@@ -80,22 +48,19 @@ function Signup() {
                   />
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
-                  <div className="card-body">
-                    <form onSubmit={handleSubmit}>
-                      <div className="fields_container">
-                        <img src={logo} className="signup_logo" />
-                        <span className="signup_title">FIND YOUR GEEK</span>
+                  <div className="card-body p-4 p-lg-5 text-black">
+                  <div className="d-flex align-items-center mb-1 pb-1">
+                        <img src={logo} className="signup_image" alt="Logo" />
+                        <span className="signupTitle">FIND YOUR GEEK</span>
                       </div>
+                    <form onSubmit={handleSubmit}>
+                      
 
-                      <h5
-                        className="signup_subheader"
-                      >
+                      <h5 className="fw-normal mb-1 pb-3 signinWrapper">
                         Create a new account
                       </h5>
-                      <div className="fields_wrapper"
-                        
-                      >
-                        {/* Username Input */}
+
+                      <div className="d-flex justify-content-around gap-3">
                         <div className="form-outline mb-1">
                           <input
                             type="text"
@@ -103,28 +68,23 @@ function Signup() {
                             value={formData.username}
                             onChange={handleInputChange}
                             required
-                            className="form-controller"
+                            className="form-control"
                           />
-                          <label className="form-label" htmlFor="formid">
-                            Username
-                          </label>
+                          <label className="requirement">Username</label>
                         </div>
 
-                        {/* Description Input */}
                         <div className="form-outline mb-1">
                           <textarea
                             name="description"
                             value={formData.description}
                             onChange={handleInputChange}
                             required
-                            className="form-controller"
+                            className="form-control"
                           />
-                          <label className="form-label" htmlFor="formid">
-                            Description
-                          </label>
+                          <label className="requirement">Description</label>
                         </div>
                       </div>
-                      {/* Email Input */}
+
                       <div className="form-outline mb-1">
                         <input
                           type="email"
@@ -132,14 +92,11 @@ function Signup() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          className="form-controller"
+                          className="form-control"
                         />
-                        <label className="form-label" htmlFor="formid">
-                          Email address
-                        </label>
+                        <label className="requirement">Email address</label>
                       </div>
 
-                      {/* Phone Number Input */}
                       <div className="form-outline mb-1">
                         <input
                           type="text"
@@ -147,14 +104,11 @@ function Signup() {
                           value={formData.phoneNumber}
                           onChange={handleInputChange}
                           required
-                          className="form-controller"
+                          className="form-control"
                         />
-                        <label className="form-label" htmlFor="formid">
-                          Phone Number
-                        </label>
+                        <label className="requirement">Phone Number</label>
                       </div>
 
-                      {/* Password Input */}
                       <div className="form-outline mb-1">
                         <input
                           type="password"
@@ -162,9 +116,9 @@ function Signup() {
                           value={formData.password}
                           onChange={handleInputChange}
                           required
-                          className="form-controller"
+                          className="form-control"
                         />
-                        <label className="form-label">Password</label>
+                        <label className="requirement">Password</label>
                       </div>
 
                       <div className="form-outline mb-1">
@@ -174,20 +128,20 @@ function Signup() {
                           value={formData.confirmPassword}
                           onChange={handleInputChange}
                           required
-                          className="form-controller"
+                          className="form-control"
                         />
-                        <label className="form-label">Confirm Password</label>
+                        <label className="requirement">Confirm Password</label>
                       </div>
 
                       <div className="pt-1 mb-1">
-                        <button className="signup_button" type="submit">
+                        <button className="signupButtonStyle" type="submit">
                           Sign Up
                         </button>
                       </div>
 
-                      <p className="form_buttom" >
-                        Already have an account?
-                        <Link className="signin_link" to="/signin" >
+                      <p className="mb-0 pb-lg-2 accountFieldWrapper">
+                        Already have an account?{" "}
+                        <Link to="/signIn" className="sign-up">
                           Sign In
                         </Link>
                       </p>
@@ -204,3 +158,4 @@ function Signup() {
 }
 
 export default Signup;
+

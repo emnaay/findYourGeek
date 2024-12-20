@@ -1,11 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MDBRow } from "mdb-react-ui-kit";
 import React from "react";
-// import "../App.css";
 import '../styles/Card.css';
-import Card from "./Card"; // Import the Card component
+import Card from "./Card";
 
-const CardList = ({ cards = [] }) => { // Default to an empty array
+const CardList = ({ cards = [] }) => { 
   return (
     <MDBRow className="justify-content-center">
       {cards.map((card, index) => (
