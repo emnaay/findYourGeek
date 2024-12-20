@@ -15,19 +15,18 @@ export const getContacts = async (user_id) => {
   }
 };
 
-export const getMessages = async (from, to) => {
+export const getMessages = async (receiver_id, sender_id) => {
   try {
-    const response = await axios.post(`http://localhost:8081/messages/get`, {
-      from: from,
-      to: to,  // Send `from` and `to` in the body, not as query parameters.
-    });
-
+    // Use template literals to pass the receiver_id and sender_id in the URL path
+    const response = await axios.get(`http://localhost:8081/messages/get/${receiver_id}/${sender_id}`);
+    
     return response.data;  // Return the data for further use
   } catch (error) {
     console.error("Error fetching messages:", error);
     return null;
   }
 };
+
    
 export const sendMessage = async (from, to, message) => {
   try {
