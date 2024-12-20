@@ -18,14 +18,16 @@ const getMessages = (req, res) => {
     if (err) return res.status(500).json({ error: 'Database query failed' });
 
     const projectedMessages = results.map((msg) => ({
-      fromSelf: msg.sender_id === sender_id,
+        // Compare sender_id to current user
       message: msg.message,
       timestamp: msg.timestamp,
+      sender_id: msg.sender_id
     }));
 
     res.json(projectedMessages);
   });
 };
+
 
 
 // Add a new message

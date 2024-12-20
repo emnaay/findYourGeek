@@ -3,31 +3,34 @@ import ChatInput from "./chatInput";
 import { getMessages, sendMessage } from "../api"; // Import API functions
 import "../styles/chatContainer.css";
 
-export default function ChatContainer({ currentChatId, userId }) {
+export default function ChatContainer({ selectedContact, userID }) {
   const scrollRef = useRef();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  console.log("currentChatId" , currentChatId)
+  console.log("selectedContact", selectedContact);
+  console.log("userId", userID);
   console.log("MESSAGES", messages);
-  const senderId = userId ;
-  const receiverId = currentChatId;
-  console.log("sender:" , senderId)
+  const senderId = userID;
+  const receiverId = selectedContact;
+  console.log("sender:", senderId);
+  console.log("receiver:", receiverId);
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      const data = await getMessages(senderId, receiverId);
-      if (data) {
-        console.log(data);
-        setMessages(data);
-      } else {
-        console.error("Failed to fetch messages:", data.error);
+    useEffect(() => {
+      const fetchMessages = async () => {
+        const data = await getMessages(senderId, receiverId);
+        if (data && Array.isArray(data)) {
+          console.log("Messages fetched:", data);
+          setMessages(data);
+        } else {
+          console.error("Failed to fetch messages: No data returned or incorrect format", );
+        }
+      };
+    
+      if (senderId && receiverId) {
+        fetchMessages(); // Ensure fetchMessages is called with both sender and receiver IDs
       }
-    };
-    if (senderId) {
-      fetchMessages(); // Ensure fetchMessages is called
-    }
-  }, []);
-  console.log(messages);
+    }, [senderId, receiverId]);
+     // Depend on senderId and receiverId to refetch messages when these change
 
   useEffect(() => {
     // Scroll to the latest message
@@ -38,11 +41,11 @@ export default function ChatContainer({ currentChatId, userId }) {
 
   const handleSendMsg = async (message) => {
     if (message) {
-      const data = await sendMessage(senderId, receiverId, message); // Sending userId as 'from' and currentChatId as 'to'
+      const data = await sendMessage(senderId, receiverId, message); // Sending userId as 'from' and selectedContact as 'to'
       if (data) {
         setMessages((prevMessages) => [
           ...prevMessages,
-          { fromSelf: true, message },
+          { fromSelf: true, message, timestamp: new Date().toISOString() }, // Add timestamp if needed
         ]);
         setNewMessage("");
       } else {
@@ -53,34 +56,33 @@ export default function ChatContainer({ currentChatId, userId }) {
 
   return (
     <div className="chat_container">
-  <div className="chat-header">
-    <div className="user-details">
-      <div className="avatar">
-        <img src="./img/loader.gif" alt="User Avatar" />
-      </div>
-      <div className="username">
-        <h3>{currentChatId}</h3>
-      </div>
-    </div>
-  </div>
-  
-  <div className="chat-messages">
-    {messages && messages.map((message, index) => (
-      <div ref={scrollRef} key={index}>
-        <div className={`message ${message.fromSelf ? "sended" : "recieved"}`}>
-          <div className="content">
-            <p>{message.message}</p>
+      <div className="chat-header">
+        <div className="user-details">
+          <div className="avatar">
+            <img src="./img/loader.gif" alt="User Avatar" />
+          </div>
+          <div className="username">
+            <h3>{selectedContact}</h3>
           </div>
         </div>
       </div>
-    ))}
-  </div>
-  
-  {/* ChatInput will always appear, even if messages are empty */}
-  <div className="chat-input-container">
-    <ChatInput handleSendMsg={handleSendMsg} />
-  </div>
-</div>
 
+      <div className="chat-messages">
+        {messages && messages.map((message, index) => (
+          <div ref={scrollRef} key={index}>
+            <div className={`message ${message.sender_id === userID ? "sended" : "recieved"}`}>
+              <div className="content">
+                <p>{message.message}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* ChatInput will always appear, even if messages are empty */}
+      <div className="chat-input-container">
+        <ChatInput handleSendMsg={handleSendMsg} />
+      </div>
+    </div>
   );
 }

@@ -36,6 +36,7 @@ const Contacts = ({ userID }) => {
 
   // Handle contact selection
   const handleContactClick = (contact) => {
+    console.log('Selected contact:', contact); // Log the full contact object
     setSelectedContact(contact);
   };
 
@@ -45,7 +46,7 @@ const Contacts = ({ userID }) => {
   return (
     <Container>
       {selectedContact ? (
-        <ChatContainer selectedContact={selectedContact} userID={userID} />
+          <ChatContainer selectedContact={selectedContact.contact_id} userID={userID} />
 
 
       ) : (
