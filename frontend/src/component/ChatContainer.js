@@ -7,9 +7,12 @@ export default function ChatContainer({ currentChatId, userId }) {
   const scrollRef = useRef();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  console.log("currentChatId" , currentChatId)
   console.log("MESSAGES", messages);
-  const senderId = "rahma";
-  const receiverId = "rahmaa";
+  const senderId = userId ;
+  const receiverId = currentChatId;
+  console.log("sender:" , senderId)
+
   useEffect(() => {
     const fetchMessages = async () => {
       const data = await getMessages(senderId, receiverId);
@@ -50,30 +53,34 @@ export default function ChatContainer({ currentChatId, userId }) {
 
   return (
     <div className="chat_container">
-      <div className="chat-header">
-        <div className="user-details">
-          <div className="avatar">
-            <img src="./img/loader.gif" alt="User Avatar" />
-          </div>
-          <div className="username">
-            <h3>{currentChatId}</h3>
+  <div className="chat-header">
+    <div className="user-details">
+      <div className="avatar">
+        <img src="./img/loader.gif" alt="User Avatar" />
+      </div>
+      <div className="username">
+        <h3>{currentChatId}</h3>
+      </div>
+    </div>
+  </div>
+  
+  <div className="chat-messages">
+    {messages && messages.map((message, index) => (
+      <div ref={scrollRef} key={index}>
+        <div className={`message ${message.fromSelf ? "sended" : "recieved"}`}>
+          <div className="content">
+            <p>{message.message}</p>
           </div>
         </div>
       </div>
-      <div className="chat-messages">
-        {messages && messages.map((message, index) => (
-          <div ref={scrollRef} key={index}>
-            <div
-              className={`message ${message.fromSelf ? "sended" : "recieved"}`}
-            >
-              <div className="content">
-                <p>{message.message}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <ChatInput handleSendMsg={handleSendMsg} />
-    </div>
+    ))}
+  </div>
+  
+  {/* ChatInput will always appear, even if messages are empty */}
+  <div className="chat-input-container">
+    <ChatInput handleSendMsg={handleSendMsg} />
+  </div>
+</div>
+
   );
 }

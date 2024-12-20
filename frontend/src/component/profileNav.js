@@ -65,7 +65,7 @@ function ProfileNav({userID}) {
                 </Box>
                 <TabPanel value="1" className='profile_nav_field' > <Portfolio userID ={userID} /> </TabPanel>
                 <TabPanel value="2" className='profile_nav_field' > <ProjectProposed userID ={userID} /> </TabPanel>
-                <TabPanel value="3" className='profile_nav_field' > <Contacts /> </TabPanel>
+                <TabPanel value="3" className='profile_nav_field' > <Contacts userID ={userID} /> </TabPanel>
             </TabContext>
         </Box>
     );
