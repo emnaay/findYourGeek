@@ -8,7 +8,6 @@ const {
   getMessagesForReceiver,
 } = require("../controllers/messagesController");
 
-// Routes for user operations
 messagesRoutes.get("/get/:receiver_id/:sender_id", getMessages);
 messagesRoutes.post("/add", sendMessage); 
 messagesRoutes.get("/get/:receiver_id", getMessagesForReceiver); 

@@ -16,14 +16,12 @@ function NavigationBar() {
               src={logo}
               width="22%"
               height="auto"
-              //className="d-inline-block align-top"
               alt="logo"
             />
           </div>
 
           <div>
             <Nav className="buttons_container">
-              {/* Use Link for navigation */}
               <Link to="/signin" className="navbar_button">
                 LOGIN
               </Link>

@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8081"; // Backend URL
+const API_URL = "http://localhost:8081"; 
 
 export const getContacts = async (user_id) => {
   try {
     const response = await axios.post(`http://localhost:8081/contacts/get`, {
-      user_id: user_id, // Send `user_id` in the body
+      user_id: user_id, 
     });
 
-    return response.data; // Return the data for further use
+    return response.data; 
   } catch (error) {
     console.error("Error fetching contacts:", error);
     return null;
@@ -17,10 +17,9 @@ export const getContacts = async (user_id) => {
 
 export const getMessages = async (receiver_id, sender_id) => {
   try {
-    // Use template literals to pass the receiver_id and sender_id in the URL path
     const response = await axios.get(`http://localhost:8081/messages/get/${receiver_id}/${sender_id}`);
     
-    return response.data;  // Return the data for further use
+    return response.data;  
   } catch (error) {
     console.error("Error fetching messages:", error);
     return null;

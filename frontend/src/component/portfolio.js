@@ -13,13 +13,13 @@ const Portfolio = ({userID}) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setData(data); // Update the state with the fetched data
+                setData(data); 
             })
             .catch(err => console.log(err));
-    }, [userID]); // Dependency array should include Id
+    }, [userID]); 
 
     if (!data) {
-        return <div>Loading...</div>; // lezma bc menghirha el prog mayestanech chwaya lin tji el data soo error
+        return <div>Loading...</div>; 
     }
 
     return (
@@ -30,7 +30,6 @@ const Portfolio = ({userID}) => {
                     {data.map((d, i) => (
                     <Col md={4} key={i} className="mb-4">
                         <Card className='cardportfolio'>
-                            {/* <Card.Img variant="top" className='portfoliocard_img'  /> */}
                             <Card.Body>
                                 <Card.Title><strong>{d.project_name}</strong></Card.Title>
                                 <Card.Text>{d.description}</Card.Text>

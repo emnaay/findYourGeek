@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import CardCarousel from "./CardCarousel";
-// import '../App.css';
 import '../img/homepage.png';
 import '../styles/welcomePage.css';
 
@@ -10,12 +9,12 @@ function AboutUs() {
   return (
     <div className="container mt-5" id="aboutus">
     <div className="row">
-      {/* Left Column: Cards */}
+      
       <div className="col-md-6">
         <CardCarousel />
       </div>
       
-      {/* Right Column: Text */}
+      
       <div className="col-md-6 d-flex align-items-center">
         <div>
           <h2 className='welcomepagetitle'>Welcome to Find Your Geek!</h2>

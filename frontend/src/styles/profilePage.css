@@ -59,7 +59,7 @@
   .proposed_project_button{
       background: none;
       border: none;
-      color: black;
+      color: #e4f2e7;
       width: 10%;
   }
 
@@ -106,3 +106,4 @@
     font-size: 1rem; /* Adjust button size */
   }
 }
+

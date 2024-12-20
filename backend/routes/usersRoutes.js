@@ -8,14 +8,13 @@ const { searchUsers } = require("../controllers/usersControllers");
 const isAuth = require("../middleware/isAuth")
 const isAutho=require('../middleware/isAutho')
 
-// Routes for user operations
-usersRoutes.get("/search", searchUsers);// Add this route for searching users
+usersRoutes.get("/search", searchUsers);
 
-usersRoutes.get("/", getUsers); // Get all users
-usersRoutes.get("/:Id", isAuth,isAutho(['user']), getUserById); // Get a user by ID
+usersRoutes.get("/", getUsers); 
+usersRoutes.get("/:Id", isAuth,isAutho(['user']), getUserById); 
 
-usersRoutes.post("/", createUser); // Create a new user
-usersRoutes.put("/:Id", updateUser); // Update a user by ID
-usersRoutes.delete("/:Id", isAuth,isAutho(['admin']), deleteUser); // Delete a user by ID
+usersRoutes.post("/", createUser); 
+usersRoutes.put("/:Id", updateUser);
+usersRoutes.delete("/:Id", isAuth,isAutho(['admin']), deleteUser); 
 
 module.exports = usersRoutes;

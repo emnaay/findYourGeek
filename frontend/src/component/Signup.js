@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-// import "../App.css";
 import logo from '../img/FYG_Logos.png';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link for routing
+import { Link } from 'react-router-dom'; 
 
 
 const title = {
@@ -46,13 +45,11 @@ function Signup() {
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        // Check if passwords match
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords do not match!");
             return;
         }
     
-        // Proceed with form submission logic
         console.log(formData);
         axios.post('http://localhost:8081/signup', formData)
             .then(response => alert("Sign-Up Successful!"))

@@ -75,7 +75,6 @@ function AddProjectButton({userID}) {
               onChange={handleInputChange}
               required
               type="text"
-              // placeholder="Project Description"
               autoFocus
               />
             </Form.Group>

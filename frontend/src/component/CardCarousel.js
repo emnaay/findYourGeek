@@ -1,12 +1,10 @@
-// CardCarousel.js
-// import 'bootstrap/dist/css/bootstrap.min.css'; old
+
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { MDBContainer } from "mdb-react-ui-kit";
 import React from "react";
-// import '../App.css'; old
 import "../styles/Card.css";
 import cardData from "./CardData.js";
-import CardList from "./CardList"; // Import CardList
+import CardList from "./CardList";
 
 export default function CardCarousel() {
   return (
@@ -26,7 +24,7 @@ export default function CardCarousel() {
               key={index}
             >
               <CardList cards={[card]} />{" "}
-              {/* Pass the single card as an array to CardList */}
+              
             </div>
           ))}
         </div>

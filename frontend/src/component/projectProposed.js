@@ -14,7 +14,7 @@ function MyVerticallyCenteredModal({ projectID, ...props }) {
 
   useEffect(() => {
     if (projectID) {
-      fetch(`http://localhost:8081/application/${projectID}`)
+      fetch(`http://localhost:8081/applications/${projectID}`)
         .then(res => res.json())
         .then(data => setData(data))
         .catch(err => console.log(err));
@@ -22,7 +22,7 @@ function MyVerticallyCenteredModal({ projectID, ...props }) {
   }, [projectID]);
 
   if (!data) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -69,34 +69,16 @@ function ProjectProposed({ userID }) {
   const [modalShow, setModalShow] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [deleteModalShow, setDeleteModalShow] = useState(false);
+
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const token = localStorage.getItem('token'); // Retrieve token from localStorage
-        const headers = token 
-          ? { Authorization: `Bearer ${token}` } 
-          : {};
-  
-        const response = await fetch(`http://localhost:8081/projects/${userID}`, {
-          headers,
-        });
-  
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-  
-        const data = await response.json();
-        setData(data);
-      } catch (err) {
-        console.error("Fetch Error:", err.message);
-      }
-    };
-  
-    fetchProjects();
+    fetch(`http://localhost:8081/projects/${userID}`)
+      .then((res) => res.json())
+      .then(setData)
+      .catch((err) => console.log(err));
   }, [userID]);
-  
+
   if (!data) {
-    return <div></div>;
+    return <div>Loading...</div>;
   }
 
   const handleDelete = (projectID) => {
@@ -121,8 +103,6 @@ function ProjectProposed({ userID }) {
             <Button
               style={{ background: "none", border: "none", color: "black" }}
               onClick={() => {
-                console.log("YEEEEESSSSS");
-
                 setSelectedProjectId(project.projectID);
                 setDeleteModalShow(true);
               }}
@@ -147,14 +127,12 @@ function ProjectProposed({ userID }) {
       ))}
       <AddProjectButton userID={userID} />
 
-      {/* Proposition Modal */}
       <MyVerticallyCenteredModal
         show={modalShow}
         onHide={() => setModalShow(false)}
         projectID={selectedProjectId}
       />
 
-      {/* Delete Confirmation Modal */}
       <Modal
         show={deleteModalShow}
         onHide={() => setDeleteModalShow(false)}

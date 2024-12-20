@@ -1,6 +1,5 @@
 const User = require("../models/User");
 
-// Get all users
 const getUsers = (req, res) => {
   User.getAll((err, results) => {
     if (err) {
@@ -10,7 +9,6 @@ const getUsers = (req, res) => {
   });
 };
 
-// Get a user by ID
 const getUserById = (req, res) => {
   const { Id } = req.params;
   User.getById(Id, (err, results) => {
@@ -24,7 +22,6 @@ const getUserById = (req, res) => {
   });
 };
 
-// Create a new user
 const createUser = (req, res) => {
   const userData = req.body;
   User.create(userData, (err, results) => {
@@ -35,7 +32,6 @@ const createUser = (req, res) => {
   });
 };
 
-// Update a user
 const updateUser = (req, res) => {
   const { Id } = req.params;
   const userData = req.body;
@@ -50,7 +46,6 @@ const updateUser = (req, res) => {
   });
 };
 
-// Delete a user
 const deleteUser = (req, res) => {
   const { Id } = req.params;
   User.delete(Id, (err, result) => {
@@ -63,7 +58,6 @@ const deleteUser = (req, res) => {
     res.status(200).json({ message: "User deleted successfully" });
   });
 };
-// Search users by username (this can be adapted to other fields)
 const searchUsers = (req, res) => {
   const { username } = req.query;
   User.searchByUsername(username, (err, results) => {

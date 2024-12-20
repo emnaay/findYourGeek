@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import ChatInput from "./chatInput";
-import { getMessages, sendMessage } from "../api"; // Import API functions
+import { getMessages, sendMessage } from "../api"; 
 import "../styles/chatContainer.css";
 
 export default function ChatContainer({ selectedContact, userID }) {
@@ -27,13 +27,11 @@ export default function ChatContainer({ selectedContact, userID }) {
       };
     
       if (senderId && receiverId) {
-        fetchMessages(); // Ensure fetchMessages is called with both sender and receiver IDs
+        fetchMessages(); 
       }
     }, [senderId, receiverId]);
-     // Depend on senderId and receiverId to refetch messages when these change
 
   useEffect(() => {
-    // Scroll to the latest message
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -41,11 +39,11 @@ export default function ChatContainer({ selectedContact, userID }) {
 
   const handleSendMsg = async (message) => {
     if (message) {
-      const data = await sendMessage(senderId, receiverId, message); // Sending userId as 'from' and selectedContact as 'to'
-      if (data) {
+      const data = await sendMessage(senderId, receiverId, message);
+            if (data) {
         setMessages((prevMessages) => [
           ...prevMessages,
-          { fromSelf: true, message, timestamp: new Date().toISOString() }, // Add timestamp if needed
+          { message, timestamp: new Date().toISOString() },
         ]);
         setNewMessage("");
       } else {
@@ -79,7 +77,7 @@ export default function ChatContainer({ selectedContact, userID }) {
         ))}
       </div>
 
-      {/* ChatInput will always appear, even if messages are empty */}
+     
       <div className="chat-input-container">
         <ChatInput handleSendMsg={handleSendMsg} />
       </div>

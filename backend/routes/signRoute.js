@@ -5,6 +5,6 @@ const signRoute = express.Router();
 const { postSignUp, postSignIn } = require("../controllers/signController");
 
 signRoute.post("/signup", postSignUp);
-signRoute.post("/signin", postSignIn,()=>{console.log("signin")});    // Endpoint for signin
+signRoute.post("/signin", postSignIn,()=>{console.log("signin")}); 
 
 module.exports = signRoute;

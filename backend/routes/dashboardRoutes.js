@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../database/db"); // Shared db connection
+const db = require("../database/db"); 
 
-// GET Dashboard Stats
 router.get("/", (req, res) => {
   const updateQuery = `
     UPDATE dashboard_data
@@ -32,21 +31,19 @@ router.get("/", (req, res) => {
     WHERE id = 2;
   `;
 
-  // Execute the UPDATE query first
   db.query(updateQuery, (err) => {
     if (err) {
       console.error("Error updating dashboard data:", err);
       return res.status(500).json({ error: "Error updating dashboard data" });
     }
 
-    // Then execute the SELECT query
     db.query(selectQuery, (err, results) => {
       if (err) {
         console.error("Error fetching dashboard data:", err);
         return res.status(500).json({ error: "Error fetching dashboard data" });
       }
 
-      res.status(200).json(results[0]); // Send the first row of the SELECT query
+      res.status(200).json(results[0]);
     });
   });
 });

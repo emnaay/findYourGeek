@@ -11,17 +11,16 @@ function ProfileCard({ Id }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
 
-  // Fetch user data on component mount or when Id changes
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        const token = localStorage.getItem('token'); 
         const headers = token 
           ? { Authorization: `Bearer ${token}` } 
           : {};
   
         const response = await fetch(`http://localhost:8081/users/${Id}`, {
-          headers, // Add the token to the Authorization header
+          headers,
         });
   
         if (!response.ok) {
@@ -48,18 +47,15 @@ function ProfileCard({ Id }) {
   }, [Id]);
   
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Toggle editing mode
   const handleEditClick = () => {
     setIsEditing(!isEditing);
   };
 
-  // Save updated data to the backend
   const handleSave = () => {
     fetch(`http://localhost:8081/users/${Id}`, {
       method: "PUT",
@@ -76,7 +72,7 @@ function ProfileCard({ Id }) {
       })
       .then((updatedData) => {
         console.log("Updated Data:", updatedData);
-        setData(updatedData); // Update local state with updated data
+        setData(updatedData); 
         setFormData({
           userName: updatedData.userName || "",
           description: updatedData.description || "",
@@ -84,12 +80,11 @@ function ProfileCard({ Id }) {
           phone_number: updatedData.phone_number || "",
           rank: updatedData.rank || "",
         });
-        setIsEditing(false); // Exit editing mode
+        setIsEditing(false); 
       })
       .catch((err) => console.error("Update Error:", err));
   };
 
-  // Render loading state if data is null
   if (!data) {
     return <div>Loading...</div>;
   }

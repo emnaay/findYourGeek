@@ -14,11 +14,10 @@ import React, { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom"; 
 import '../styles//Dashboard.css';
 
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, ChartTooltip, Legend);
 
 const Dashboard = ({ userID }) => {
@@ -38,17 +37,14 @@ const Dashboard = ({ userID }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  // Fetch dashboard data
   useEffect(() => {
     axios
       .get("http://localhost:8081/dashboard")
       .then((response) => {
         const data = response.data;
 
-        // Update dashboard data state
         setDashboardData(data);
 
-        // Update chart data
         setChartData({
           labels: ["Total Accounts", "Total Projects"],
           datasets: [
@@ -78,7 +74,6 @@ const Dashboard = ({ userID }) => {
   }, []);
 
 
-  // Fetch users
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -93,7 +88,6 @@ const Dashboard = ({ userID }) => {
       });
   };
 
-  // Search users
   const handleSearch = () => {
     if (!searchQuery.trim()) {
       alert("Please enter a username to search.");
@@ -108,7 +102,6 @@ const Dashboard = ({ userID }) => {
       });
   };
 
-  // Handle user deletion
   const handleDeleteUser = (userId, userName) => {
     const confirmation = window.confirm(`Are you sure you want to delete the user ${userName} (ID: ${userId})?`);
     if (confirmation) {
@@ -123,26 +116,24 @@ const Dashboard = ({ userID }) => {
     }
   };
 
-  // Handle pagination
   const handleChangePage = (event, newPage) => setPage(newPage);
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  // Fetch projects when a user is selected
   const fetchUserProjects = (userId) => {
     axios.get(`http://localhost:8081/projects/${userId}`)
       .then(response => {
         if (response.data.length > 0) {
           setProjects(response.data);
         } else {
-          setProjects([]); // No projects found for this user
+          setProjects([]); 
         }
       })
       .catch(error => {
         console.error("Error fetching projects:", error.message);
-        setProjects([]); // Handle error gracefully
+        setProjects([]); 
       });
   };
 
@@ -155,20 +146,19 @@ const fetchUserPortfolios = (userId) => {
         setPortfolios(response.data);
       } else {
         console.error("Unexpected response format:", response.data);
-        setPortfolios([]); // Graceful fallback if the response isn't an array
+        setPortfolios([]); 
       }
     })
     .catch((error) => {
       console.error("Error fetching portfolios:", error.message);
-      setPortfolios([]); // Graceful fallback on error
+      setPortfolios([]);
     });
 };
 
-  // Handle opening the modal
   const handleOpenModal = (user) => {
     setSelectedUser(user);
     setOpenModal(true);
-    fetchUserProjects(user.Id); // Fetch projects for the selected user
+    fetchUserProjects(user.Id); 
     fetchUserPortfolios(user.Id);
   };
 
@@ -203,11 +193,11 @@ const fetchUserPortfolios = (userId) => {
       placeholder="Search by username"
       value={searchQuery}
       onChange={(e) => setSearchQuery(e.target.value)}
-      className="search-input" // Apply the new className
+      className="search-input" 
     />
     <button
       onClick={handleSearch}
-      className="search-button" // Apply the new className
+      className="search-button"
     >
       <FaSearch />
     </button>
@@ -314,8 +304,8 @@ const fetchUserPortfolios = (userId) => {
       Close
     </Button>
     <Link 
-    to={`/profile/${selectedUser ? selectedUser.Id : ''}`}  // Dynamically use selectedUser.Id 
-    style={{ textDecoration: "none" }} // Remove default underline
+    to={`/profile/${selectedUser ? selectedUser.Id : ''}`} 
+    style={{ textDecoration: "none" }}
   >
     <Button className="close-button">
       View Profile

@@ -21,7 +21,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setData(data); // Update state with fetched data
+        setData(data); 
       })
       .catch((err) => console.log(err));
   }, []);
@@ -34,9 +34,7 @@ console.log('DARAAAA',data);
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/signUp" element={<SignupPage />} />
-          {/* <Route path="/signup" element={<SignUpLoginPage />} /> */}
-          {/* <Route path="/ProjectCard" element={<ProjectCard />} /> */}
-          { /*<Route path="/profile/:id" element={<ProfilePage />} />*/ }
+         
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/signin" element={<LoginPage />} />
           <Route path="/signout" element={<SignOutButton />} />
@@ -56,7 +54,6 @@ console.log('DARAAAA',data);
           }
 
           {
-            //el page loula li bch todherlou ki yconecti feha des proj
             data.map((d, i) => (
               <Route
                 key={i}
@@ -67,7 +64,6 @@ console.log('DARAAAA',data);
           }
 
 {
-            //tu visites profile abd e5er
             data.map((d, i) => (
               <Route
                 key={i}
@@ -78,8 +74,7 @@ console.log('DARAAAA',data);
           }
         </Routes>
       </Router>
-      {/* <SignUpLoginPage/> */}
-      {/* <ProfilePage/> */}
+      
     </div>
   );
 }

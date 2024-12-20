@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import "../styles/chatContacts.css";
 import ChatContainer from "../component/ChatContainer.js";
-import { getContacts } from "../api"; // Import API function
+import { getContacts } from "../api"; 
 
 const Contacts = ({ userID }) => {
   const [contacts, setContacts] = useState([]);
   const [selectedContact, setSelectedContact] = useState(null);
 
-  const user_id = userID; // Current user's ID
+  const user_id = userID;
   const staticCurrentUser = {
-    username: "Current User", // Placeholder for the current user's username
+    username: "Current User",
   };
 
-  // Fetch contacts based on the user ID
   useEffect(() => {
     const fetchContacts = async () => {
       try {
@@ -34,13 +33,11 @@ const Contacts = ({ userID }) => {
     fetchContacts();
   }, [user_id]);
 
-  // Handle contact selection
   const handleContactClick = (contact) => {
-    console.log('Selected contact:', contact); // Log the full contact object
+    console.log('Selected contact:', contact); 
     setSelectedContact(contact);
   };
 
-  // Get the username of a contact
   const getUserName = (contact) => contact.contact_name || "Unknown User";
 
   return (
@@ -62,7 +59,7 @@ const Contacts = ({ userID }) => {
                   className="contact"
                   onClick={() => handleContactClick(contact)}
                 >
-                  <div className="avatar">{/* Avatar Placeholder */}</div>
+                  <div className="avatar"></div>
                   <div className="username">
                     <h3>{getUserName(contact)}</h3>
                   </div>
@@ -85,7 +82,6 @@ const Contacts = ({ userID }) => {
 
 export default Contacts;
 
-// Styled Components
 const Container = styled.div`
   height: 100vh;
   display: flex;

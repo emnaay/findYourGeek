@@ -11,8 +11,7 @@ return (
 </div>)
 }
 else {
-// No valid token or role, redirect to the login page
-return <Navigate to="/signIn" />; // Adjust the redirect route as needed
+return <Navigate to="/signIn" />; 
 }
 }
 export default PrivateRoute;

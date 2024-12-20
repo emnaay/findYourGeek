@@ -40,9 +40,7 @@ export default function SetAvatar() {
     if (selectedAvatar === undefined) {
       toast.error("Please select an avatar", toastOptions);
     } else {
-      // Handle avatar setting without user authentication (this could be a simple state update)
       toast.success("Avatar set successfully!", toastOptions);
-      // Add additional logic here if needed, for example, saving the avatar in localStorage or a database
     }
   };
 

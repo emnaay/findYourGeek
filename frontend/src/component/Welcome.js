@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Robot from "../assets/robot.gif";
 
 export default function Welcome() {
-  // Static username placeholder
   const staticUserName = "John Doe";
 
   return (

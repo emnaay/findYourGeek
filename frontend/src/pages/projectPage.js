@@ -9,52 +9,47 @@ import { MDBCard, MDBCardBody } from "mdb-react-ui-kit";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-//import NavigationBar from "../component/NavigationBarY";
 import "../styles/Card.css";
 
 const ProjectCard = ({ Id }) => {
-  const [data, setData] = useState([]); // Initialize data as an empty array
-  const [dataUser, setDataUser] = useState({}); // User data state
+  const [data, setData] = useState([]); 
+  const [dataUser, setDataUser] = useState({}); 
 
-  const [show, setShow] = useState(false); // Modal state
+  const [show, setShow] = useState(false); 
   console.log(localStorage.getItem("token"));
 
-  // Modal toggle functions
   const [selectedProject, setSelectedProject] = useState(0);
   const handleClose = () => setShow(false);
   const handleShow = (project) => {
-    setSelectedProject(project); // Store the selected project data
+    setSelectedProject(project); 
     console.log("handelshow", project);
     setFormData({
       ...formData,
-      projectID: project.projectID, // Update formData with selected project
+      projectID: project.projectID, 
     });
     setShow(true);
   };
 
-  // Fetch project data
   useEffect(() => {
     fetch("http://localhost:8081/projects")
       .then((res) => res.json())
       .then((data) => {
         console.log("projects: ", data);
-        setData(data); // Update state with the fetched data
+        setData(data); 
       })
       .catch((err) => console.log(err));
   }, []);
 
-  // Fetch user data
   useEffect(() => {
     fetch(`http://localhost:8081/users/${Id}`)
       .then((res) => res.json())
       .then((user) => {
         console.log("User data: ", user);
-        setDataUser(user); // Update state with fetched user data
+        setDataUser(user); 
       })
       .catch((err) => console.log(err));
   }, [Id]);
 
-  //application post
   const [formData, setFormData] = useState({
     userID: Id,
     projectID: "",
@@ -64,7 +59,6 @@ const ProjectCard = ({ Id }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Proceed with form submission logic
     console.log("formdata in handle submit:", formData);
     axios
       .post("http://localhost:8081/application", formData)
@@ -97,9 +91,9 @@ const ProjectCard = ({ Id }) => {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "20px", // Adjust the gap to 20px
+          gap: "20px", 
           margin: "0 auto",
-          maxWidth: "1200px", // Restrict the width of the container
+          maxWidth: "1200px", 
           justifyContent: "center",
         }}
       >
@@ -107,11 +101,11 @@ const ProjectCard = ({ Id }) => {
           <div
             key={i}
             style={{
-              flex: "1 1 calc(50% - 20px)", // Takes 50% of the row minus the gap
-              maxWidth: "calc(50% - 20px)", // Ensure cards don't stretch too much
+              flex: "1 1 calc(50% - 20px)", 
+              maxWidth: "calc(50% - 20px)", 
               boxSizing: "border-box",
               display: "flex",
-              flexDirection: "column", // Ensure consistent alignment within each card
+              flexDirection: "column", 
             }}
           >
             <MDBCard className="sizecard">
@@ -128,7 +122,7 @@ const ProjectCard = ({ Id }) => {
                 <Button
                   variant="primary"
                   onClick={() => handleShow(d)}
-                  style={{ marginTop: "auto" }} // Push the button to the bottom of the card
+                  style={{ marginTop: "auto" }} 
                 >
                   Admission
                 </Button>
@@ -160,7 +154,6 @@ const ProjectCard = ({ Id }) => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Email address</Form.Label>
               <Form.Control
-                //el email la 3ale9a bel proj ama just mise en page bch enajem naadi el data mtaa el proj men ghadi el ghadi
                 type="email"
                 placeholder="name@example.com"
                 autoFocus

@@ -38,7 +38,6 @@ const postSignIn = (req, res) => {
   const query = "SELECT * FROM users WHERE email = ? AND password = ?";
   console.log("Executing query:", query, email, password);
 
-  // Query the database for the user
   db.query(query, [email, password], (error, results) => {
     if (error) {
       console.error("Error during sign-in:", error);
@@ -50,14 +49,12 @@ const postSignIn = (req, res) => {
     if (results.length > 0) {
       const user = results[0];
 
-      // Generate JWT token with user ID and role
       const token = jwt.sign(
-        { id: user.Id, role: user.role }, // Payload (user details)
-        process.env.JWT_SECRET, // Secret key from .env file
-        { expiresIn: "1h" } // Token expiration time
+        { id: user.Id, role: user.role },
+        process.env.JWT_SECRET, 
+        { expiresIn: "1h" } 
       );
 
-      // Return the token along with user details
       return res.status(200).json({
         message: "Login successful",
         user: { id: user.Id, email: user.email, role: user.role },
