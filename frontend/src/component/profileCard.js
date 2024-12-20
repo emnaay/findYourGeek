@@ -13,15 +13,24 @@ function ProfileCard({ Id }) {
 
   // Fetch user data on component mount or when Id changes
   useEffect(() => {
-    fetch(`http://localhost:8081/users/${Id}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        const headers = token 
+          ? { Authorization: `Bearer ${token}` } 
+          : {};
+  
+        const response = await fetch(`http://localhost:8081/users/${Id}`, {
+          headers, // Add the token to the Authorization header
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return res.json();
-      })
-      .then((data) => {
+  
+        const data = await response.json();
         console.log("Fetched Data:", data);
+  
         setData(data);
         setFormData({
           userName: data.userName || "",
@@ -30,9 +39,14 @@ function ProfileCard({ Id }) {
           phone_number: data.phone_number || "",
           rank: data.rank || "",
         });
-      })
-      .catch((err) => console.error("Fetch Error:", err));
+      } catch (err) {
+        console.error("Fetch Error:", err.message);
+      }
+    };
+  
+    fetchUserData();
   }, [Id]);
+  
 
   // Handle form input changes
   const handleInputChange = (e) => {

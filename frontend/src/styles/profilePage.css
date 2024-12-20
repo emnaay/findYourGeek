@@ -16,10 +16,10 @@
     margin-top: -30px;
   }
   
-  .portfoliocard_img {
+  /* .portfoliocard_img {
     height: 150px;
     width: 100%;
-  }
+  } */
   
   .prevwork_cont {
     display: flex;
@@ -46,6 +46,14 @@
   .proposed_project_card{
       width: 100%;
   }
+
+.cardportfolio{
+  border: 15px solid #93bfb7 !important;
+  border-radius: 25px;
+  flex-grow: 1; /* Allow the card to grow and take available space */
+  width: 80% !important; /* Ensure full width */
+  height: 100% !important; /* Ensure full height */
+}
   .proposed_project_card_header{
       display: flex;
       justify-content: space-between;

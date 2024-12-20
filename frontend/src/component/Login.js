@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import axios from 'axios'; // make sure axios is imported
 import logo from '../img/FYG_Logos.png';
 import { Link } from 'react-router-dom'; // Import Link for routing
@@ -135,3 +135,4 @@ function Login() {
 }
 
 export default Login;
+*/

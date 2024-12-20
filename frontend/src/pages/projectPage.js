@@ -21,6 +21,7 @@ const ProjectCard = ({ Id }) => {
   const [dataUser, setDataUser] = useState({}); // User data state
 
   const [show, setShow] = useState(false); // Modal state
+  console.log(localStorage.getItem("token"))
 
   // Modal toggle functions
   const [selectedProject, setSelectedProject] = useState(0);
@@ -85,7 +86,7 @@ const ProjectCard = ({ Id }) => {
 
   return (
     <>
-      <NavigationBar />
+      <NavigationBar Id = {Id}/>
       <h1>matfas5ouheech</h1>
 
       <h1 style={{ color: '#202258', fontFamily: 'Arial, sans-serif', font: 2, marginTop: '50px' }}>

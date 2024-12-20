@@ -1,16 +1,17 @@
-/* Card.css */
-
-
 /* Card Container */
 .mdb-card {
-  border: 15px solid #93bfb7;
+  border: 15px solid #93bfb7 !important;
   border-radius: 25px;
-  height: 100%;
+  flex-grow: 1; /* Allow the card to grow and take available space */
+  width: 100% !important; /* Ensure full width */
+  height: 100% !important; /* Ensure full height */
 }
 
 /* Card Body */
 .mdb-card-body {
-  height: 300px;
+  flex-grow: 1; /* Allow the card to grow and take available space */
+  width: 100% !important; /* Ensure full width */
+  height: 100% !important; /* Ensure full height */
 }
 
 /* Avatar */
@@ -58,6 +59,7 @@
   text-decoration: underline; /* Add underline on hover */
 }
 
+/* Carousel Vertical Styles */
 .carousel-vertical .carousel-inner {
   height: 300px; /* Set the height for the carousel */
 }
@@ -72,20 +74,23 @@
   transition: transform 0.6s ease;
 }
 
+/* Positioning of Carousel Buttons */
 .carousel-control-prev,
-.carousel-control-next{
+.carousel-control-next {
   display: flex;
   align-items: center; /* Vertically centers the arrows */
   justify-content: center;
   position: absolute;
   top: 50%; /* Centers the arrow vertically */
-  transform: translateY(-50%); /* Adjusts for exact centering */
+  transform: translateY(-50%); /* Adjust for exact centering */
   width: 40px; /* Width of the arrow button */
   height: 40px; /* Height of the arrow button */
   background-color: none; /* Transparent background */
   border: none; /* Removes any border */
-  z-index: 1; /* Optional: size of the icon */
+  z-index: 10; /* Ensures the buttons are on top of the cards */
 }
+
+/* Carousel Button Hover */
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
 background-color: transparent !important; /* Ensures no green background on hover */
@@ -94,25 +99,23 @@ outline: none; /* Removes any focus outline */
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: #202258; /* Ensures background is transparent */
-  border-radius: 50%; /* Optional: gives it a round appearance */
-  width: 30px; /* Optional: size of the icon */
-  height: 30px; /* Optional: size of the icon */
-}
-
-.py-5{
-  max-width: 500px;
-   height: 500px;
-}
-
-.carousel-vertical-slider{
-  height: "100%";
-}
-
-.carousel-inner{
-  height: "100%";
 background-color: #202258; /* Ensures background is transparent */
 border-radius: 50%; /* Optional: gives it a round appearance */
 width: 30px; /* Optional: size of the icon */
 height: 30px; /* Optional: size of the icon */
+}
+
+.carousel-vertical-slider {
+position: relative; /* Allow buttons to be positioned around the card */
+}
+
+.carousel-inner {
+width: 100%; /* Ensures carousel takes up full width */
+height: 100%;
+}
+
+/* Ensure the Card Carousel has a defined height */
+.py-5 {
+max-width: 500px;
+height: 500px;
 }

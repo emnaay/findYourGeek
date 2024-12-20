@@ -34,7 +34,7 @@ function App() {
           <Route path="/signUp" element={<SignupPage />} />
           {/* <Route path="/signup" element={<SignUpLoginPage />} /> */}
           {/* <Route path="/ProjectCard" element={<ProjectCard />} /> */}
-          { <Route path="/profile/:id" element={<ProfilePage />} /> }
+          { /*<Route path="/profile/:id" element={<ProfilePage />} />*/ }
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/signin" element={<LoginPage />} />
           <Route path="/signout" element={<SignOutButton />} />

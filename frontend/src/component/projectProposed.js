@@ -22,7 +22,7 @@ function MyVerticallyCenteredModal({ projectID, ...props }) {
   }, [projectID]);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
@@ -69,16 +69,34 @@ function ProjectProposed({ userID }) {
   const [modalShow, setModalShow] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
   const [deleteModalShow, setDeleteModalShow] = useState(false);
-
   useEffect(() => {
-    fetch(`http://localhost:8081/projects/${userID}`)
-      .then((res) => res.json())
-      .then(setData)
-      .catch((err) => console.log(err));
+    const fetchProjects = async () => {
+      try {
+        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        const headers = token 
+          ? { Authorization: `Bearer ${token}` } 
+          : {};
+  
+        const response = await fetch(`http://localhost:8081/projects/${userID}`, {
+          headers,
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        const data = await response.json();
+        setData(data);
+      } catch (err) {
+        console.error("Fetch Error:", err.message);
+      }
+    };
+  
+    fetchProjects();
   }, [userID]);
-
+  
   if (!data) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   const handleDelete = (projectID) => {
