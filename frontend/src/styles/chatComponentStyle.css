@@ -76,3 +76,59 @@
 .chat-input button:hover {
     background-color: #0056b3;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .chat-container {
+        height: 400px; /* Reduce height for smaller screens */
+        max-width: 100%; /* Use full width of the screen */
+        border-radius: 0; /* Remove border radius for edge-to-edge layout */
+    }
+
+    .chat-header {
+        font-size: 1rem; /* Slightly smaller font size */
+        padding: 8px; /* Adjust padding */
+    }
+
+    .message-display {
+        padding: 5px; /* Reduce padding */
+    }
+
+    .chat-input input {
+        padding: 6px; /* Adjust padding for smaller input */
+        font-size: 0.9rem;
+    }
+
+    .chat-input button {
+        padding: 6px 10px; /* Smaller button size */
+    }
+}
+
+@media (max-width: 576px) {
+    .chat-container {
+        height: 100vh; /* Occupy the full height of the viewport */
+        max-width: 100%; /* Full width */
+        margin: 0; /* Remove margins */
+    }
+
+    .chat-header {
+        font-size: 0.9rem; /* Smaller font for narrow screens */
+    }
+
+    .message {
+        max-width: 90%; /* Allow messages to take more space */
+    }
+
+    .chat-input {
+        flex-direction: column; /* Stack input and button vertically */
+        gap: 5px; /* Add some space between input and button */
+    }
+
+    .chat-input input {
+        margin-right: 0; /* Remove right margin */
+    }
+
+    .chat-input button {
+        width: 100%; /* Full width button */
+    }
+}

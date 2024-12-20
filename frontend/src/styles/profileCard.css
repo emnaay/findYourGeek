@@ -41,3 +41,45 @@
        display: flex;
       justify-content: center;
   }
+
+
+  /* Responsive Design */
+@media screen and (max-width: 768px) {
+  .profile_card {
+    width: 90%; /* Full width with padding on smaller screens */
+  }
+
+  .profilecard_body {
+    flex-direction: column; /* Stacks content vertically */
+  }
+
+  .profilecard_title {
+    font-size: 1rem; /* Slightly smaller title for smaller screens */
+  }
+
+  .profile_card_social_media_icon {
+    font-size: 1rem; /* Adjust icon size for smaller devices */
+  }
+
+  .profilecard_description {
+    font-size: 0.9rem; /* Smaller text for compact devices */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile_card {
+    padding: 0.5rem; /* Reduce padding for very small screens */
+  }
+
+  .profilecard_title {
+    font-size: 0.9rem; /* Further reduce title size */
+  }
+
+  .profilecard_description {
+    font-size: 0.8rem; /* Compact text size */
+  }
+
+  .profile_card_social_media_icon {
+    font-size: 0.9rem; /* Smaller icons for very small screens */
+  }
+}

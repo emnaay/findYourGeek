@@ -94,3 +94,45 @@
 .recieved .content {
   background-color: #e4f2e7;
 }
+
+/* Responsive Styles */
+@media screen and (min-width: 720px) and (max-width: 1080px) {
+  .chat_container {
+    grid-template-rows: 15% 70% 15%;
+  }
+
+  .message .content {
+    max-width: 70%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .chat_container {
+    grid-template-rows: 20% 60% 20%;
+    border-radius: 20px;
+    gap: 0.5rem;
+  }
+
+  .chat-header {
+    padding: 0 1rem;
+  }
+
+  .username h3 {
+    font-size: 0.9rem;
+  }
+
+  .avatar img {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .chat-messages {
+    padding: 0.5rem;
+  }
+
+  .message .content {
+    max-width: 90%;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}

@@ -21,22 +21,6 @@ const postSignUp = (req, res) => {
   });
 };
 
-// const postLogIn = (req, res) => {
-//   const { email, password } = req.body;
-// console.log("leeeeee");
-//   const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-//   db.query(sql, [email, password], (err, data) => {
-//       if (err) {
-//           console.error("SQL Error:", err); // Log the error
-//           return res.status(500).json("ERROR");
-//       }
-//       if (data.length > 0) {
-//           return res.json({ status: "Login Successful", user: data[0] });
-//       } else {
-//           return res.json({ status: "Invalid credentials" });
-//       }
-//   });
-// };
 
 const postSignIn = (req, res) => {
   const { email, password } = req.body;
@@ -57,7 +41,7 @@ const postSignIn = (req, res) => {
       return res.status(500).json({ message: "Server error" });
     }
 
-    console.log("AAAAAAAAAAAAAA Query results:", results);
+    console.log("Query results:", results);
 
     if (results.length > 0) {
       return res.status(200).json({ message: "Login successful", user: results[0] });

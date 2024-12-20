@@ -1,20 +1,17 @@
-import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import React, { useEffect, useState } from "react";
 
 //import '../styles/projectCardStyle.css';
-import "../styles/Card.css";
-import NavigationBar from "../component/NavigationBarY";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  MDBCard,
+  MDBCardBody
+} from "mdb-react-ui-kit";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-    MDBCard,
-    MDBCardBody,
-    MDBCardImage,
-    MDBCol,
-} from "mdb-react-ui-kit";
-import '../styles/Card.css';
+import NavigationBar from "../component/NavigationBarY";
+import "../styles/Card.css";
 
 const ProjectCard = ({ Id }) => {
   const [data, setData] = useState([]); // Initialize data as an empty array
@@ -92,34 +89,55 @@ const ProjectCard = ({ Id }) => {
         Welcome {dataUser.userName}, here are some projects you can work on!
       </h1>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-        {data.map((d, i) => (
-          <MDBCol key={i} md="6" lg="6" xl="6">
-            <MDBCard className="mdb-card">
-              <MDBCardBody className="mdb-card-body">
-                <div className="d-flex flex-start align-items-center">
-                  <div>
-                    <h6 className="card-header">{d.projectName}</h6>
-                    <div className="card-profile-icon">👤</div>
-                    <p className="card-subtext">Lazy - {d.userName}</p>
-                  </div>
-                </div>
-                <p className="card-description">{d.description}</p>
+      <div style={{ 
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '20px', // Adjust the gap to 20px
+  margin: '0 auto',
+  maxWidth: '1200px', // Restrict the width of the container
+  justifyContent: 'center',
+}}>
+  {data.map((d, i) => (
+    <div 
+      key={i} 
+      style={{ 
+        flex: '1 1 calc(50% - 20px)', // Takes 50% of the row minus the gap
+        maxWidth: 'calc(50% - 20px)', // Ensure cards don't stretch too much
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column', // Ensure consistent alignment within each card
+      }}
+    >
+      <MDBCard className="sizecard">
+        <MDBCardBody className="mdb-card-body">
+          <div className="d-flex flex-start align-items-center">
+            <div className="head">
+              <h6 className="card-header">{d.projectName}</h6>
+              <div className="card-profile-icon">👤</div>
+              <p className="card-subtext">Lazy - {d.userName}</p>
+            </div>
+          </div>
+          <p className="card-description">{d.description}</p>
 
-                <Button variant="primary" onClick={() => handleShow(d)} >
-                  Admission
-                </Button>
+          <Button 
+            variant="primary" 
+            onClick={() => handleShow(d)}
+            style={{ marginTop: 'auto' }} // Push the button to the bottom of the card
+          >
+            Admission
+          </Button>
 
-                <div className="float-end">
-                  <a href="#" className="question-button">
-                    {d.price}
-                  </a>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        ))}
-      </div>
+          <div className="float-end">
+            <a href="#" className="question-button">
+              {d.price}
+            </a>
+          </div>
+        </MDBCardBody>
+      </MDBCard>
+    </div>
+  ))}
+</div>
+
 
       {/* Modal */}
       
@@ -127,7 +145,7 @@ const ProjectCard = ({ Id }) => {
         <Modal.Header closeButton>
           <Modal.Title>Admission Form</Modal.Title>
           
-        </Modal.Header><Form.Label> {selectedProject.projectName}</Form.Label>
+        </Modal.Header><Form.Label><h3 style={{margin:"10px", fontWeight:"bold"}}>{selectedProject.projectName}</h3> </Form.Label>
         <Modal.Body>
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -144,7 +162,7 @@ const ProjectCard = ({ Id }) => {
               <Form.Label>Price prop</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="nflouus"
+                placeholder="price"
                 name="price_proposed"
                 value={formData.price_proposed}
                 onChange={handleInputChange}

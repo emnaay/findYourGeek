@@ -27,3 +27,49 @@
     color: #000 !important; /* Ensure arrows are visible */
     z-index: 1; /* Bring arrows to the front */
 }
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .slick-slide h3 {
+        font-size: 1.25rem; /* Slightly smaller font for medium screens */
+    }
+
+    .carousel-container {
+        padding: 15px; /* Reduce padding for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .slick-slide {
+        height: 60px; /* Reduce height for smaller screens */
+    }
+
+    .slick-slide h3 {
+        font-size: 1rem; /* Smaller font size for better fit */
+    }
+
+    .carousel-container {
+        padding: 10px; /* Further reduce padding */
+    }
+}
+
+@media (max-width: 576px) {
+    .slick-slide {
+        height: auto; /* Allow height to adjust dynamically */
+        padding: 5px; /* Reduce padding around slides */
+        flex-direction: column; /* Stack content vertically if needed */
+    }
+
+    .slick-slide h3 {
+        font-size: 0.875rem; /* Adjust font size for small screens */
+    }
+
+    .carousel-container {
+        padding: 5px; /* Minimal padding for compact design */
+    }
+
+    .slick-prev, .slick-next {
+        color: #fff !important; /* Ensure arrows are visible on smaller screens */
+    }
+}

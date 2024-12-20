@@ -60,3 +60,52 @@
 .container.py-5.h-100 {
     max-width: 1200px;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .logintitle {
+      font-size: 32px;
+    }
+  
+    .requirement {
+      font-size: 14px;
+    }
+  
+    .loginButtonStyle {
+      font-size: 16px;
+    }
+  
+    .logincard {
+      padding: 15px;
+      max-width: 90%; /* Allow more space on smaller screens */
+    }
+  
+    .form-control {
+      font-size: 14px;
+      padding: 8px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .logintitle {
+      font-size: 28px;
+    }
+  
+    .requirement {
+      font-size: 12px;
+    }
+  
+    .loginButtonStyle {
+      font-size: 14px;
+    }
+  
+    .logincard {
+      padding: 10px;
+      max-width: 100%; /* Full width on very small screens */
+    }
+  
+    .form-control {
+      font-size: 12px;
+      padding: 6px;
+    }
+  }
