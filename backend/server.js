@@ -11,6 +11,9 @@ app.use(cors());
 const messageRouter = require("./routes/messageRoutes");
 app.use("/messages", messageRouter);
 
+const applicationRoutes = require("./routes/applicationRoute");
+app.use("/application", applicationRoutes);
+
 const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use("/dashboard", dashboardRoutes);
 

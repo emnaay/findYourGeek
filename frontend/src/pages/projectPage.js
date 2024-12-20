@@ -67,7 +67,7 @@ const ProjectCard = ({ Id }) => {
     // Proceed with form submission logic
     console.log("formdata in handle submit:", formData);
     axios
-      .post("http://localhost:8081/applications", formData)
+      .post("http://localhost:8081/application", formData)
       .then((response) => alert("application added"))
       .catch((error) => console.log("Error in the application:", error));
   };
@@ -195,7 +195,7 @@ const ProjectCard = ({ Id }) => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Save Changes
               </Button>
             </Modal.Footer>
